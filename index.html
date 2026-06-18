@@ -114,6 +114,14 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
 .total-lbl{font-size:12px;letter-spacing:0.08em;font-weight:600;}
 .total-amt{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;}
 .empty-notice{font-size:12px;color:#8a6a3a;font-style:italic;text-align:center;padding:2rem 0;line-height:1.8;}
+.bank-card{border:2px solid var(--ink);background:var(--kraft);padding:12px;margin-top:1.2rem;}
+.bank-card-title{font-family:'Noto Serif TC',serif;font-size:12px;font-weight:700;letter-spacing:0.1em;border-bottom:1.5px solid var(--kraft-border);padding-bottom:6px;margin-bottom:10px;color:var(--ink);}
+.bank-row{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid var(--kraft-dark);}
+.bank-row:last-of-type{border-bottom:none;}
+.bank-row .blbl{color:#8a6a3a;flex-shrink:0;margin-right:8px;}
+.bank-row .bval{font-weight:700;text-align:right;letter-spacing:0.04em;}
+.bank-account{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;background:var(--ink);color:var(--kraft);text-align:center;padding:8px;margin:8px 0;letter-spacing:0.12em;}
+.bank-note{font-size:11px;color:#8a6a3a;text-align:center;line-height:1.6;margin-top:6px;}
 
 .deco{text-align:center;padding:10px 0;font-size:18px;letter-spacing:6px;color:var(--kraft-border);border-bottom:var(--border);}
 .footer-bar{background:var(--ink);color:var(--kraft);text-align:center;padding:10px;font-size:11px;letter-spacing:0.15em;}
@@ -164,6 +172,22 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
         <div class="form-row"><label>姓名 Name</label><input type="text" id="fieldName" placeholder="請輸入收件人姓名" oninput="updateSidebar()"><div class="err-msg" id="errName"></div></div>
         <div class="form-row"><label>電話 Phone</label><input type="tel" id="fieldPhone" placeholder="09XX-XXX-XXX" oninput="updateSidebar()"><div class="err-msg" id="errPhone"></div></div>
         <div class="form-row"><label>收件地址 Address</label><input type="text" id="fieldAddress" placeholder="縣市 + 街道地址" oninput="updateSidebar()"><div class="err-msg" id="errAddress"></div></div>
+      </div>
+
+      <div class="section">
+        <div class="section-label"><span class="section-num">3</span> 匯款確認</div>
+        <div style="border:2px solid var(--ink);background:#fdf6e9;padding:1.2rem;margin-bottom:1rem;">
+          <div style="font-family:'Noto Serif TC',serif;font-size:13px;font-weight:700;border-bottom:1.5px solid var(--kraft-border);padding-bottom:8px;margin-bottom:10px;">📋 請匯款至以下帳戶</div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid var(--kraft-dark);"><span style="color:#6b4f2a;">銀行</span><span style="font-weight:600;">華南銀行（008）</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid var(--kraft-dark);"><span style="color:#6b4f2a;">戶名</span><span style="font-weight:600;">十八五一股份有限公司</span></div>
+          <div style="background:var(--ink);color:var(--kraft);text-align:center;padding:10px;margin:10px 0;font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;letter-spacing:0.15em;">112101205853</div>
+          <div style="font-size:11px;color:#8a6a3a;text-align:center;line-height:1.7;">請於下單後 48 小時內完成匯款<br>匯款後請填寫帳號末五碼供核對</div>
+        </div>
+        <div class="form-row">
+          <label>匯款帳號末五碼</label>
+          <input type="text" id="fieldBankLast5" placeholder="例如：05853" maxlength="5" oninput="sanitizeBank()" onchange="updateSidebar()">
+          <div class="err-msg" id="errBank"></div>
+        </div>
       </div>
 
       <div class="sending-bar" id="sendingBar">⏳ 正在上傳照片與送出訂單，請稍候…</div>
@@ -441,6 +465,15 @@ function updateSidebar() {
   }
 
   html += `<div class="total-box"><span class="total-lbl">總金額 TOTAL</span><span class="total-amt">NT$ ${totalPrice}</span></div>`;
+
+  // 匯款資訊卡
+  html += `<div class="bank-card">
+    <div class="bank-card-title">🏦 匯款資訊</div>
+    <div class="bank-row"><span class="blbl">銀行</span><span class="bval">華南銀行（008）</span></div>
+    <div class="bank-row"><span class="blbl">戶名</span><span class="bval">十八五一股份有限公司</span></div>
+    <div class="bank-account">112101205853</div>
+    <div class="bank-note">請於 48 小時內完成匯款<br>並填寫帳號末五碼供核對</div>
+  </div>`;
   document.getElementById('sidebarContent').innerHTML = html;
 }
 
@@ -478,12 +511,19 @@ function validate() {
   if (!name) { document.getElementById('fieldName').classList.add('error'); document.getElementById('errName').textContent = '請填寫收件人姓名'; ok = false; }
   if (!phone || !/^[0-9\-+\s]+$/.test(phone)) { document.getElementById('fieldPhone').classList.add('error'); document.getElementById('errPhone').textContent = '請輸入有效的電話號碼'; ok = false; }
   if (!addr) { document.getElementById('fieldAddress').classList.add('error'); document.getElementById('errAddress').textContent = '請填寫收件地址'; ok = false; }
+  const bank = document.getElementById('fieldBankLast5').value.trim();
+  if (!bank || bank.length !== 5) { document.getElementById('fieldBankLast5').classList.add('error'); document.getElementById('errBank').textContent = '請填寫匯款帳號末五碼（5位數字）'; ok = false; }
   return ok;
 }
 
-function setProgress(p) { document.getElementById('progressBar').style.width = p + '%'; }
+function sanitizeBank() {
+  const input = document.getElementById('fieldBankLast5');
+  input.value = input.value.replace(/[^0-9]/g, '').slice(0, 5);
+  updateSidebar();
+}
 
-async function fileToBase64(file) {
+
+function setProgress(p) { document.getElementById('progressBar').style.width = p + '%'; }
   return new Promise((res, rej) => {
     const reader = new FileReader();
     reader.onload = e => res({ data: e.target.result.split(',')[1], mimeType: file.type || 'image/heic', name: file.name });
@@ -529,7 +569,8 @@ async function handleSubmit() {
     totalQty, totalPrice,
     name: document.getElementById('fieldName').value.trim(),
     phone: document.getElementById('fieldPhone').value.trim(),
-    address: document.getElementById('fieldAddress').value.trim()
+    address: document.getElementById('fieldAddress').value.trim(),
+    bankLast5: document.getElementById('fieldBankLast5').value.trim()
   };
 
   setProgress(75);

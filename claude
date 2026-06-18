@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1851 Newspaper Photobooth · 下單系統</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--ink:#111;--purple:#9589b1;--purple-light:#ede9f5;--green:#2d4a3e;--green-light:#e8f0ec;--border:2px solid #111;}
+body{font-family:'Inter',sans-serif;color:#111;background:#fff;}
+.page{max-width:900px;margin:0 auto;padding:0 0 4rem;}
+.masthead{border-bottom:var(--border);border-top:6px solid #111;padding:1.2rem 2rem 1rem;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem;}
+.masthead-left{font-size:11px;letter-spacing:0.08em;color:#555;line-height:1.7;}
+.masthead-title{text-align:center;}
+.masthead-title h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;line-height:1;}
+.masthead-title .sub{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#555;margin-top:4px;}
+.masthead-right{text-align:right;font-size:11px;color:#555;line-height:1.7;}
+.tagline-bar{background:#111;color:#fff;text-align:center;padding:6px 2rem;font-size:11px;letter-spacing:0.25em;}
+.main{display:grid;grid-template-columns:1fr 280px;border-left:var(--border);border-right:var(--border);}
+.form-area{padding:2rem;border-right:var(--border);}
+.sidebar{padding:1.5rem;}
+.section{margin-bottom:2.5rem;}
+.section-label{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;border-bottom:var(--border);padding-bottom:6px;margin-bottom:1.2rem;display:flex;align-items:center;gap:8px;}
+.section-num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:#111;color:#fff;font-size:12px;font-weight:600;flex-shrink:0;}
+.group-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.group-card{border:1.5px solid #ddd;border-radius:2px;padding:12px 14px;cursor:pointer;transition:all 0.15s;position:relative;background:#fff;}
+.group-card:hover{border-color:#111;}
+.group-card.selected{border:2px solid var(--purple);background:var(--purple-light);}
+.g-name{font-weight:600;font-size:13px;}
+.g-genre{font-size:11px;color:#888;margin-top:3px;}
+.g-tag{position:absolute;top:8px;right:8px;background:var(--purple);color:#fff;font-size:9px;padding:2px 6px;font-weight:600;}
+.group-card.selected .g-tag{background:#111;}
+.sessions-box{display:none;}
+.sessions-box.visible{display:block;}
+.session-item{border:1.5px solid #ddd;border-radius:2px;padding:12px 14px;cursor:pointer;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;transition:border-color 0.15s;}
+.session-item:hover{border-color:#111;}
+.session-item.selected{border:2px solid var(--green);background:var(--green-light);}
+.session-date{font-weight:600;font-size:13px;}
+.session-venue{font-size:11px;color:#888;margin-top:2px;}
+.session-badge{font-size:10px;background:#111;color:#fff;padding:3px 8px;white-space:nowrap;flex-shrink:0;}
+.session-item.selected .session-badge{background:var(--green);}
+.no-session{font-size:13px;color:#aaa;font-style:italic;padding:1rem 0;}
+.form-row{margin-bottom:1rem;}
+.form-row label{display:block;font-size:12px;font-weight:600;letter-spacing:0.06em;margin-bottom:5px;text-transform:uppercase;}
+.form-row input{width:100%;border:1.5px solid #ccc;border-radius:2px;padding:10px 12px;font-size:14px;outline:none;transition:border-color 0.15s;font-family:'Inter',sans-serif;}
+.form-row input:focus{border-color:#111;}
+.form-row input.error{border-color:#c0392b;}
+.err-msg{font-size:11px;color:#c0392b;margin-top:4px;}
+.submit-btn{width:100%;background:#111;color:#fff;border:none;padding:14px;font-size:15px;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:background 0.15s;font-family:'Inter',sans-serif;}
+.submit-btn:hover:not(:disabled){background:var(--purple);}
+.submit-btn:disabled{background:#aaa;cursor:not-allowed;}
+.sending-bar{font-size:12px;color:var(--purple);text-align:center;padding:8px 0;display:none;}
+.sidebar-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;border-bottom:2px solid #111;padding-bottom:6px;margin-bottom:1.2rem;}
+.order-card{background:#fafafa;border:1.5px solid #ddd;padding:1rem;}
+.order-row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid #eee;}
+.order-row:last-child{border-bottom:none;}
+.order-row .lbl{color:#777;}
+.order-row .val{font-weight:600;text-align:right;max-width:130px;word-break:break-all;}
+.price-row{margin-top:1rem;padding:10px;background:#111;color:#fff;display:flex;justify-content:space-between;align-items:center;}
+.price-lbl{font-size:12px;letter-spacing:0.06em;font-weight:600;}
+.price-amt{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;}
+.empty-notice{font-size:12px;color:#aaa;font-style:italic;text-align:center;padding:1.5rem 0;}
+.footer-bar{border:var(--border);border-top:none;background:#111;color:#fff;text-align:center;padding:10px;font-size:11px;letter-spacing:0.12em;}
+.deco{text-align:center;padding:10px 0;font-size:20px;letter-spacing:4px;color:#ccc;border-bottom:var(--border);}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:999;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:#fff;border:3px solid #111;max-width:420px;width:90%;padding:2.5rem 2rem;text-align:center;}
+.modal-icon{width:56px;height:56px;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;font-size:28px;}
+.modal-icon.err{background:#c0392b;}
+.modal h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:0.5rem;}
+.modal p{font-size:13px;color:#666;line-height:1.6;margin-bottom:1.2rem;}
+.order-num-badge{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;background:#111;color:#fff;display:inline-block;padding:6px 16px;letter-spacing:0.1em;margin-bottom:1.2rem;}
+.modal-close{background:#111;color:#fff;border:none;padding:10px 28px;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.08em;font-family:'Inter',sans-serif;}
+.modal-close:hover{background:var(--purple);}
+@media(max-width:650px){
+  .main{grid-template-columns:1fr;}
+  .sidebar{border-top:var(--border);}
+  .masthead{grid-template-columns:1fr;text-align:center;}
+  .masthead-left,.masthead-right{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="masthead">
+    <div class="masthead-left">Vol. 1 · No. 001<br>2025–2026 Concert Season<br>Photobooth Edition</div>
+    <div class="masthead-title">
+      <h1>1851<br>NEWSPAPER</h1>
+      <div class="sub">Photobooth · Custom Concert Photo</div>
+    </div>
+    <div class="masthead-right">訂單下單系統<br>Order Platform<br>Taiwan · 台灣</div>
+  </div>
+  <div class="tagline-bar">— 為每位粉絲留下屬於你的演唱會報紙頭版 · YOUR MOMENT, YOUR HEADLINE —</div>
+
+  <div class="main">
+    <div class="form-area">
+      <div class="section">
+        <div class="section-label"><span class="section-num">1</span> 選擇應援團體</div>
+        <div class="group-grid">
+          <div class="group-card" data-group="BABYMONSTER" onclick="selectGroup(this)"><div class="g-tag">K-POP</div><div class="g-name">BABYMONSTER</div><div class="g-genre">YG Entertainment</div></div>
+          <div class="group-card" data-group="TWICE" onclick="selectGroup(this)"><div class="g-tag">K-POP</div><div class="g-name">TWICE</div><div class="g-genre">JYP Entertainment</div></div>
+          <div class="group-card" data-group="BLACKPINK" onclick="selectGroup(this)"><div class="g-tag">K-POP</div><div class="g-name">BLACKPINK</div><div class="g-genre">YG Entertainment</div></div>
+          <div class="group-card" data-group="ATEEZ" onclick="selectGroup(this)"><div class="g-tag">K-POP</div><div class="g-name">ATEEZ</div><div class="g-genre">KQ Entertainment</div></div>
+          <div class="group-card" data-group="MJ116" onclick="selectGroup(this)" style="grid-column:span 2"><div class="g-tag" style="background:var(--green)">本土</div><div class="g-name">頑童 MJ116</div><div class="g-genre">台灣嘻哈 · Hip-Hop</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label"><span class="section-num">2</span> 選擇演唱會場次</div>
+        <div class="sessions-box" id="sessions-BABYMONSTER">
+          <div class="session-item" data-session="2026.05.16 台北小巨蛋站" data-price="380" onclick="selectSession(this)"><div><div class="session-date">2026.05.16 Sat</div><div class="session-venue">台北小巨蛋 · Taipei Arena</div></div><div class="session-badge">報紙頭條底圖已就緒</div></div>
+          <div class="session-item" data-session="2026.05.17 台北小巨蛋站" data-price="380" onclick="selectSession(this)"><div><div class="session-date">2026.05.17 Sun</div><div class="session-venue">台北小巨蛋 · Taipei Arena</div></div><div class="session-badge">報紙頭條底圖已就緒</div></div>
+        </div>
+        <div class="sessions-box" id="sessions-TWICE">
+          <div class="session-item" data-session="2026.07.05 台北大巨蛋站" data-price="380" onclick="selectSession(this)"><div><div class="session-date">2026.07.05 Sun</div><div class="session-venue">台北大巨蛋 · Taipei Dome</div></div><div class="session-badge">報紙頭條底圖已就緒</div></div>
+          <div class="session-item" data-session="2026.07.06 台北大巨蛋站" data-price="380" onclick="selectSession(this)"><div><div class="session-date">2026.07.06 Mon</div><div class="session-venue">台北大巨蛋 · Taipei Dome</div></div><div class="session-badge">報紙頭條底圖已就緒</div></div>
+        </div>
+        <div class="sessions-box" id="sessions-BLACKPINK">
+          <div class="session-item" data-session="2026.08.22 台北大巨蛋站" data-price="380" onclick="selectSession(this)"><div><div class="session-date">2026.08.22 Sat</div><div class="session-venue">台北大巨蛋 · Taipei Dome</div></div><div class="session-badge">報紙頭條底圖已就緒</div></div>
+        </div>
+        <div class="sessions-box" id="sessions-ATEEZ">
+          <div class="session-item" data-session="2026.06.28 台北小巨蛋站" data-price="380" onclick="selectSession(this)"><div><div class="session-date">2026.06.28 Sun</div><div class="session-venue">台北小巨蛋 · Taipei Arena</div></div><div class="session-badge">報紙頭條底圖已就緒</div></div>
+          <div class="session-item" data-session="2026.06.29 台北小巨蛋站" data-price="380" onclick="selectSession(this)"><div><div class="session-date">2026.06.29 Mon</div><div class="session-venue">台北小巨蛋 · Taipei Arena</div></div><div class="session-badge">報紙頭條底圖已就緒</div></div>
+        </div>
+        <div class="sessions-box" id="sessions-MJ116">
+          <div class="session-item" data-session="2026.10.10 台北小巨蛋站" data-price="380" onclick="selectSession(this)"><div><div class="session-date">2026.10.10 Sat</div><div class="session-venue">台北小巨蛋 · Taipei Arena</div></div><div class="session-badge">報紙頭條底圖已就緒</div></div>
+        </div>
+        <div class="no-session" id="noSessionMsg">← 請先選擇上方的應援團體</div>
+      </div>
+
+      <div class="section">
+        <div class="section-label"><span class="section-num">3</span> 填寫收件資訊</div>
+        <div class="form-row"><label>姓名 Name</label><input type="text" id="fieldName" placeholder="請輸入收件人姓名" oninput="updateSidebar()"><div class="err-msg" id="errName"></div></div>
+        <div class="form-row"><label>電話 Phone</label><input type="tel" id="fieldPhone" placeholder="09XX-XXX-XXX" oninput="updateSidebar()"><div class="err-msg" id="errPhone"></div></div>
+        <div class="form-row"><label>收件地址 Address</label><input type="text" id="fieldAddress" placeholder="縣市 + 街道地址" oninput="updateSidebar()"><div class="err-msg" id="errAddress"></div></div>
+      </div>
+
+      <div class="sending-bar" id="sendingBar">⏳ 正在送出訂單，請稍候…</div>
+      <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">✦ 確認下單 PLACE ORDER ✦</button>
+    </div>
+
+    <div class="sidebar">
+      <div class="sidebar-title">訂單明細 · Order Summary</div>
+      <div id="sidebarContent"><div class="empty-notice">請完成選擇後，<br>訂單明細將顯示於此。</div></div>
+    </div>
+  </div>
+  <div class="deco">— ✦ — ✦ — ✦ —</div>
+  <div class="footer-bar">© 1851 NEWSPAPER PHOTOBOOTH · ALL RIGHTS RESERVED · 台灣</div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-icon" id="modalIcon">✦</div>
+    <h2 id="modalTitle">下單成功！</h2>
+    <p id="modalDesc">感謝你的訂購！你的復古報紙相片正在製作中，我們將盡快安排寄送。</p>
+    <div class="order-num-badge" id="modalOrderNum"></div>
+    <p id="modalSummary" style="font-size:12px;color:#888;line-height:1.8;margin-bottom:1.2rem;"></p>
+    <button class="modal-close" onclick="closeModal()">關閉 CLOSE</button>
+  </div>
+</div>
+
+<script>
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxR-M4iObY0weWyLkxBChE8I_ZHkA_kUT6qlLeiAQ3AFuodiH3TJKL7ynIbqY2eFWJW/exec';
+let selectedGroup=null, selectedSession=null, selectedPrice=0;
+
+function selectGroup(el){
+  document.querySelectorAll('.group-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedGroup=el.dataset.group; selectedSession=null; selectedPrice=0;
+  document.querySelectorAll('.sessions-box').forEach(b=>b.classList.remove('visible'));
+  document.querySelectorAll('.session-item').forEach(s=>s.classList.remove('selected'));
+  const box=document.getElementById('sessions-'+selectedGroup);
+  if(box){box.classList.add('visible');document.getElementById('noSessionMsg').style.display='none';}
+  updateSidebar();
+}
+function selectSession(el){
+  document.querySelectorAll('.session-item').forEach(s=>s.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedSession=el.dataset.session; selectedPrice=parseInt(el.dataset.price);
+  updateSidebar();
+}
+function updateSidebar(){
+  const name=document.getElementById('fieldName').value.trim();
+  const phone=document.getElementById('fieldPhone').value.trim();
+  const addr=document.getElementById('fieldAddress').value.trim();
+  if(!selectedGroup&&!name){document.getElementById('sidebarContent').innerHTML='<div class="empty-notice">請完成選擇後，<br>訂單明細將顯示於此。</div>';return;}
+  let html='<div class="order-card">'+r('應援團體',selectedGroup||'—')+r('演唱會場次',selectedSession||'—')+r('收件姓名',name||'—')+r('聯絡電話',phone||'—')+r('收件地址',addr||'—')+'</div>';
+  if(selectedPrice>0) html+='<div class="price-row"><span class="price-lbl">商品金額 TOTAL</span><span class="price-amt">NT$ '+selectedPrice+'</span></div>';
+  document.getElementById('sidebarContent').innerHTML=html;
+}
+function r(l,v){return '<div class="order-row"><span class="lbl">'+l+'</span><span class="val">'+v+'</span></div>';}
+function validate(){
+  let ok=true;
+  const name=document.getElementById('fieldName').value.trim();
+  const phone=document.getElementById('fieldPhone').value.trim();
+  const addr=document.getElementById('fieldAddress').value.trim();
+  ['fieldName','fieldPhone','fieldAddress'].forEach(id=>document.getElementById(id).classList.remove('error'));
+  ['errName','errPhone','errAddress'].forEach(id=>document.getElementById(id).textContent='');
+  if(!selectedGroup){alert('請選擇應援團體！');return false;}
+  if(!selectedSession){alert('請選擇演唱會場次！');return false;}
+  if(!name){document.getElementById('fieldName').classList.add('error');document.getElementById('errName').textContent='請填寫收件人姓名';ok=false;}
+  if(!phone||!/^[0-9\-+\s]+$/.test(phone)){document.getElementById('fieldPhone').classList.add('error');document.getElementById('errPhone').textContent='請輸入有效的電話號碼';ok=false;}
+  if(!addr){document.getElementById('fieldAddress').classList.add('error');document.getElementById('errAddress').textContent='請填寫收件地址';ok=false;}
+  return ok;
+}
+async function handleSubmit(){
+  if(!validate()) return;
+  const orderNum='ORDER #1851-'+String(Math.floor(Math.random()*9000)+1000);
+  const timestamp=new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'});
+  const payload={
+    orderNum, timestamp,
+    group: selectedGroup,
+    session: selectedSession,
+    name: document.getElementById('fieldName').value.trim(),
+    phone: document.getElementById('fieldPhone').value.trim(),
+    address: document.getElementById('fieldAddress').value.trim(),
+    price: selectedPrice
+  };
+  const btn=document.getElementById('submitBtn');
+  const bar=document.getElementById('sendingBar');
+  btn.disabled=true; bar.style.display='block';
+  try{
+    await fetch(SHEETS_URL,{
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    showModal(true, orderNum, payload);
+  }catch(e){
+    showModal(false, null, null);
+  }finally{
+    btn.disabled=false; bar.style.display='none';
+  }
+}
+function showModal(ok,orderNum,p){
+  const icon=document.getElementById('modalIcon');
+  if(ok){
+    icon.textContent='✦'; icon.className='modal-icon';
+    document.getElementById('modalTitle').textContent='下單成功！';
+    document.getElementById('modalDesc').textContent='感謝你的訂購！你的復古報紙相片正在製作中，我們將盡快安排寄送。';
+    const nb=document.getElementById('modalOrderNum'); nb.textContent=orderNum; nb.style.display='inline-block';
+    document.getElementById('modalSummary').innerHTML='團體：'+p.group+'<br>場次：'+p.session+'<br>金額：NT$ '+p.price;
+  }else{
+    icon.textContent='✕'; icon.className='modal-icon err';
+    document.getElementById('modalTitle').textContent='送出失敗';
+    document.getElementById('modalDesc').textContent='網路連線異常，請稍後再試或聯絡客服。';
+    document.getElementById('modalOrderNum').style.display='none';
+    document.getElementById('modalSummary').textContent='';
+  }
+  document.getElementById('modalOverlay').classList.add('open');
+}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
+</script>
+</body>
+</html>

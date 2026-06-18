@@ -8,36 +8,25 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --ink:#1a1008;
-  --purple:#9589b1;
-  --green:#2d4a3e;
-  --green-light:#e8f0ec;
-  --kraft:#f5ead6;
-  --kraft-dark:#e8d5b0;
-  --kraft-border:#c8aa78;
-  --border:2px solid #1a1008;
-  --red:#8b2020;
+  --ink:#1a1008;--purple:#9589b1;--green:#2d4a3e;--green-light:#e8f0ec;
+  --kraft:#f5ead6;--kraft-dark:#e8d5b0;--kraft-border:#c8aa78;
+  --border:2px solid #1a1008;--red:#8b2020;
 }
 body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
 .page{max-width:960px;margin:0 auto;padding:0 0 5rem;}
-
 .masthead{border-bottom:var(--border);border-top:6px solid var(--ink);padding:1.2rem 2rem 1rem;background:var(--kraft);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem;}
 .masthead-left{font-size:11px;letter-spacing:0.06em;color:#6b4f2a;line-height:1.8;font-style:italic;}
 .masthead-title{text-align:center;}
-.masthead-title h1{font-family:'Noto Serif TC',serif;font-size:2.6rem;font-weight:900;line-height:1.1;letter-spacing:0.1em;color:var(--ink);}
+.masthead-title h1{font-family:'Noto Serif TC',serif;font-size:2.6rem;font-weight:900;line-height:1.1;letter-spacing:0.1em;}
 .masthead-right{text-align:right;font-size:11px;color:#6b4f2a;line-height:1.8;font-style:italic;}
 .rule-double{border:none;border-top:4px double var(--ink);}
 .tagline-bar{background:var(--ink);color:var(--kraft);text-align:center;padding:7px 2rem;font-size:11px;letter-spacing:0.2em;font-weight:500;}
-
 .main{display:grid;grid-template-columns:1fr 300px;border-left:var(--border);border-right:var(--border);border-bottom:var(--border);}
 .form-area{padding:2rem;border-right:var(--border);}
 .sidebar{padding:1.5rem;background:var(--kraft-dark);}
-
 .section{margin-bottom:2.5rem;}
 .section-label{font-family:'Noto Serif TC',serif;font-size:1.15rem;font-weight:700;border-bottom:var(--border);padding-bottom:6px;margin-bottom:1.2rem;display:flex;align-items:center;gap:8px;}
 .section-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:var(--ink);color:var(--kraft);font-size:12px;font-weight:700;flex-shrink:0;}
-
-/* SESSION BLOCK */
 .orders-container{display:flex;flex-direction:column;gap:1.4rem;}
 .order-block{border:1.5px solid var(--kraft-border);background:#fdf6e9;overflow:hidden;}
 .order-block-header{background:var(--ink);color:var(--kraft);padding:8px 14px;display:flex;align-items:center;justify-content:space-between;}
@@ -45,32 +34,22 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
 .remove-btn{background:none;border:1px solid rgba(255,255,255,0.4);color:var(--kraft);font-size:11px;padding:2px 8px;cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.15s;}
 .remove-btn:hover{background:var(--red);}
 .order-block-body{padding:1.2rem;}
-
-/* GROUP */
 .select-label{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;color:#6b4f2a;display:block;}
 .block-group-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:1rem;}
 .block-group-card{border:1.5px solid var(--kraft-border);padding:7px 5px;cursor:pointer;transition:all 0.15s;background:var(--kraft);text-align:center;font-weight:700;font-size:12px;font-family:'Noto Serif TC',serif;}
 .block-group-card:hover{border-color:var(--ink);background:#ede0c4;}
 .block-group-card.selected{border:2px solid var(--ink);background:var(--ink);color:var(--kraft);}
-
-/* SESSION SELECT */
 .session-select{width:100%;border:1.5px solid var(--kraft-border);padding:9px 12px;font-size:13px;font-family:'Inter',sans-serif;background:var(--kraft);color:var(--ink);outline:none;margin-bottom:1rem;}
 .session-select:focus{border-color:var(--ink);}
 .session-select.error{border-color:var(--red);}
-
-/* PHOTO HINT */
 .upload-hint-banner{background:#fffbe6;border:1.5px solid #e6c84a;padding:8px 12px;margin-bottom:10px;font-size:12px;color:#7a5c00;line-height:1.6;}
 .upload-hint-banner strong{display:block;font-size:13px;color:#5a3e00;margin-bottom:2px;}
-
-/* DROP ZONE */
 .dropzone{border:2px dashed var(--kraft-border);padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.15s;position:relative;background:var(--kraft);margin-bottom:10px;}
 .dropzone:hover,.dropzone.dragover{border-color:var(--purple);background:#f0eaf8;}
 .dropzone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
 .dropzone-icon{font-size:2rem;display:block;margin-bottom:6px;}
 .dropzone-text{font-size:13px;color:#8a6a3a;line-height:1.6;}
 .dropzone-text strong{display:block;color:var(--ink);font-size:14px;margin-bottom:3px;}
-
-/* PHOTO GRID */
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:6px;}
 .photo-card{border:1.5px solid var(--kraft-border);background:var(--kraft);overflow:hidden;position:relative;}
 .photo-card img{width:100%;height:90px;object-fit:cover;display:block;}
@@ -80,29 +59,30 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
 .photo-qty-label{font-size:10px;color:#6b4f2a;white-space:nowrap;}
 .photo-qty-input{width:48px;border:1px solid var(--kraft-border);padding:3px 5px;font-size:12px;font-family:'Inter',sans-serif;background:var(--kraft);text-align:center;outline:none;}
 .photo-qty-input:focus{border-color:var(--ink);}
-.photo-remove{position:absolute;top:4px;right:4px;width:20px;height:20px;background:rgba(26,16,8,0.7);color:#fff;border:none;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;line-height:1;}
+.photo-remove{position:absolute;top:4px;right:4px;width:20px;height:20px;background:rgba(26,16,8,0.7);color:#fff;border:none;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;}
 .photo-remove:hover{background:var(--red);}
-.photo-err{font-size:10px;color:var(--red);margin-top:3px;}
-
 .err-msg{font-size:11px;color:var(--red);margin-top:4px;}
 .add-order-btn{width:100%;border:2px dashed var(--kraft-border);background:transparent;color:#8a6a3a;padding:12px;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.1em;transition:all 0.15s;font-family:'Inter',sans-serif;margin-top:0.5rem;}
 .add-order-btn:hover{border-color:var(--ink);color:var(--ink);background:#ede0c4;}
-
-/* FORM */
 .form-row{margin-bottom:1rem;}
 .form-row label{display:block;font-size:11px;font-weight:600;letter-spacing:0.08em;margin-bottom:5px;text-transform:uppercase;color:#6b4f2a;}
 .form-row input{width:100%;border:1.5px solid var(--kraft-border);padding:10px 12px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.15s;background:var(--kraft);color:var(--ink);}
 .form-row input:focus{border-color:var(--ink);}
 .form-row input.error{border-color:var(--red);}
-
+.bank-info-box{border:2px solid var(--ink);background:#fdf6e9;padding:1.2rem;margin-bottom:1rem;}
+.bank-info-title{font-family:'Noto Serif TC',serif;font-size:13px;font-weight:700;border-bottom:1.5px solid var(--kraft-border);padding-bottom:8px;margin-bottom:10px;}
+.bank-info-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid var(--kraft-dark);}
+.bank-info-row:last-of-type{border-bottom:none;}
+.bank-info-row .bl{color:#6b4f2a;}
+.bank-info-row .bv{font-weight:700;}
+.bank-account-num{background:var(--ink);color:var(--kraft);text-align:center;padding:10px;margin:10px 0;font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;letter-spacing:0.15em;}
+.bank-note{font-size:11px;color:#8a6a3a;text-align:center;line-height:1.7;}
 .submit-btn{width:100%;background:var(--ink);color:var(--kraft);border:none;padding:15px;font-size:15px;font-weight:700;letter-spacing:0.12em;cursor:pointer;transition:background 0.15s;font-family:'Noto Serif TC',serif;margin-top:1rem;}
 .submit-btn:hover:not(:disabled){background:#3a2a10;}
 .submit-btn:disabled{background:#aaa;cursor:not-allowed;}
 .sending-bar{font-size:12px;color:var(--purple);text-align:center;padding:8px 0;display:none;}
 .progress-bar-wrap{height:3px;background:#ddd;display:none;margin:6px 0;}
 .progress-bar{height:3px;background:var(--purple);width:0%;transition:width 0.3s;}
-
-/* SIDEBAR */
 .sidebar-title{font-family:'Noto Serif TC',serif;font-size:1rem;font-weight:700;border-bottom:var(--border);padding-bottom:6px;margin-bottom:1.2rem;}
 .summary-block{border:1.5px solid var(--kraft-border);background:var(--kraft);margin-bottom:10px;overflow:hidden;}
 .summary-block-title{background:var(--ink);color:var(--kraft);font-size:11px;font-weight:600;padding:5px 10px;letter-spacing:0.06em;}
@@ -113,20 +93,17 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
 .total-box{background:var(--ink);color:var(--kraft);padding:12px;display:flex;justify-content:space-between;align-items:center;margin-top:1rem;}
 .total-lbl{font-size:12px;letter-spacing:0.08em;font-weight:600;}
 .total-amt{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;}
+.sidebar-bank-card{border:2px solid var(--ink);background:var(--kraft);padding:12px;margin-top:1.2rem;}
+.sidebar-bank-title{font-family:'Noto Serif TC',serif;font-size:12px;font-weight:700;border-bottom:1.5px solid var(--kraft-border);padding-bottom:6px;margin-bottom:8px;}
+.sidebar-bank-row{display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid var(--kraft-dark);}
+.sidebar-bank-row:last-of-type{border-bottom:none;}
+.sidebar-bank-row .sbl{color:#8a6a3a;}
+.sidebar-bank-row .sbv{font-weight:700;text-align:right;}
+.sidebar-bank-num{background:var(--ink);color:var(--kraft);text-align:center;padding:7px;margin:8px 0;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;letter-spacing:0.12em;}
+.sidebar-bank-note{font-size:10px;color:#8a6a3a;text-align:center;line-height:1.6;}
 .empty-notice{font-size:12px;color:#8a6a3a;font-style:italic;text-align:center;padding:2rem 0;line-height:1.8;}
-.bank-card{border:2px solid var(--ink);background:var(--kraft);padding:12px;margin-top:1.2rem;}
-.bank-card-title{font-family:'Noto Serif TC',serif;font-size:12px;font-weight:700;letter-spacing:0.1em;border-bottom:1.5px solid var(--kraft-border);padding-bottom:6px;margin-bottom:10px;color:var(--ink);}
-.bank-row{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid var(--kraft-dark);}
-.bank-row:last-of-type{border-bottom:none;}
-.bank-row .blbl{color:#8a6a3a;flex-shrink:0;margin-right:8px;}
-.bank-row .bval{font-weight:700;text-align:right;letter-spacing:0.04em;}
-.bank-account{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;background:var(--ink);color:var(--kraft);text-align:center;padding:8px;margin:8px 0;letter-spacing:0.12em;}
-.bank-note{font-size:11px;color:#8a6a3a;text-align:center;line-height:1.6;margin-top:6px;}
-
 .deco{text-align:center;padding:10px 0;font-size:18px;letter-spacing:6px;color:var(--kraft-border);border-bottom:var(--border);}
 .footer-bar{background:var(--ink);color:var(--kraft);text-align:center;padding:10px;font-size:11px;letter-spacing:0.15em;}
-
-/* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;align-items:center;justify-content:center;}
 .modal-overlay.open{display:flex;}
 .modal{background:var(--kraft);border:3px solid var(--ink);max-width:440px;width:90%;padding:2.5rem 2rem;text-align:center;}
@@ -137,14 +114,12 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
 .order-num-badge{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;background:var(--ink);color:var(--kraft);display:inline-block;padding:6px 18px;letter-spacing:0.1em;margin-bottom:1.2rem;}
 .modal-close{background:var(--ink);color:var(--kraft);border:none;padding:10px 32px;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.1em;font-family:'Inter',sans-serif;}
 .modal-close:hover{background:#3a2a10;}
-
 @media(max-width:680px){
   .main{grid-template-columns:1fr;}
   .sidebar{border-top:var(--border);}
   .masthead{grid-template-columns:1fr;text-align:center;}
   .masthead-left,.masthead-right{display:none;}
   .block-group-grid{grid-template-columns:1fr 1fr;}
-  .photo-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));}
 }
 </style>
 </head>
@@ -160,6 +135,8 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
 
   <div class="main">
     <div class="form-area">
+
+      <!-- STEP 1 -->
       <div class="section">
         <div class="section-label"><span class="section-num">1</span> 新增場次與照片</div>
         <div class="orders-container" id="ordersContainer"></div>
@@ -167,6 +144,7 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
         <div class="err-msg" id="errOrders"></div>
       </div>
 
+      <!-- STEP 2 -->
       <div class="section">
         <div class="section-label"><span class="section-num">2</span> 填寫收件資訊</div>
         <div class="form-row"><label>姓名 Name</label><input type="text" id="fieldName" placeholder="請輸入收件人姓名" oninput="updateSidebar()"><div class="err-msg" id="errName"></div></div>
@@ -174,14 +152,15 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
         <div class="form-row"><label>收件地址 Address</label><input type="text" id="fieldAddress" placeholder="縣市 + 街道地址" oninput="updateSidebar()"><div class="err-msg" id="errAddress"></div></div>
       </div>
 
+      <!-- STEP 3 -->
       <div class="section">
         <div class="section-label"><span class="section-num">3</span> 匯款確認</div>
-        <div style="border:2px solid var(--ink);background:#fdf6e9;padding:1.2rem;margin-bottom:1rem;">
-          <div style="font-family:'Noto Serif TC',serif;font-size:13px;font-weight:700;border-bottom:1.5px solid var(--kraft-border);padding-bottom:8px;margin-bottom:10px;">📋 請匯款至以下帳戶</div>
-          <div style="display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid var(--kraft-dark);"><span style="color:#6b4f2a;">銀行</span><span style="font-weight:600;">華南銀行（008）</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid var(--kraft-dark);"><span style="color:#6b4f2a;">戶名</span><span style="font-weight:600;">十八五一股份有限公司</span></div>
-          <div style="background:var(--ink);color:var(--kraft);text-align:center;padding:10px;margin:10px 0;font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;letter-spacing:0.15em;">112101205853</div>
-          <div style="font-size:11px;color:#8a6a3a;text-align:center;line-height:1.7;">請於下單後 48 小時內完成匯款<br>匯款後請填寫帳號末五碼供核對</div>
+        <div class="bank-info-box">
+          <div class="bank-info-title">📋 請匯款至以下帳戶</div>
+          <div class="bank-info-row"><span class="bl">銀行</span><span class="bv">華南銀行（008）</span></div>
+          <div class="bank-info-row"><span class="bl">戶名</span><span class="bv">十八五一股份有限公司</span></div>
+          <div class="bank-account-num">112101205853</div>
+          <div class="bank-note">請於下單後 48 小時內完成匯款<br>匯款後請填寫帳號末五碼供核對</div>
         </div>
         <div class="form-row">
           <label>匯款帳號末五碼</label>
@@ -198,6 +177,13 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
     <div class="sidebar">
       <div class="sidebar-title">訂單明細 · Order Summary</div>
       <div id="sidebarContent"><div class="empty-notice">新增場次與照片後，<br>訂單明細將顯示於此。</div></div>
+      <div class="sidebar-bank-card">
+        <div class="sidebar-bank-title">🏦 匯款資訊</div>
+        <div class="sidebar-bank-row"><span class="sbl">銀行</span><span class="sbv">華南銀行（008）</span></div>
+        <div class="sidebar-bank-row"><span class="sbl">戶名</span><span class="sbv">十八五一股份有限公司</span></div>
+        <div class="sidebar-bank-num">112101205853</div>
+        <div class="sidebar-bank-note">請於 48 小時內完成匯款<br>並填寫帳號末五碼供核對</div>
+      </div>
     </div>
   </div>
 
@@ -209,7 +195,7 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
   <div class="modal">
     <div class="modal-icon" id="modalIcon">✦</div>
     <h2 id="modalTitle">下單成功！</h2>
-    <p id="modalDesc">感謝你的訂購！你的復古報紙相片正在製作中，我們將盡快安排寄送。</p>
+    <p id="modalDesc">感謝你的訂購！我們收到匯款確認後將盡快安排製作與寄送。</p>
     <div class="order-num-badge" id="modalOrderNum"></div>
     <p id="modalSummary" style="font-size:12px;color:#5a3e1e;line-height:1.9;margin-bottom:1.2rem;"></p>
     <button class="modal-close" onclick="closeModal()">關閉 CLOSE</button>
@@ -228,29 +214,22 @@ const SESSIONS = {
   '其他':['自訂場次（請在備註說明）']
 };
 
-// 整個訂單合併計算：第1張120，之後每張20
-function calcTotal(totalQty) {
-  if (totalQty <= 0) return 0;
-  return 120 + Math.max(0, totalQty - 1) * 20;
+function calcTotal(qty){
+  if(qty<=0) return 0;
+  return 120 + Math.max(0,qty-1)*20;
 }
 
-let blockCount = 0;
-// blocks[id] = { group, photos: [{file, qty, id}] }
-let blocks = {};
-let photoSeq = 0;
+let blockCount=0, photoSeq=0;
+let blocks={};
 
-function addBlock() {
-  const id = ++blockCount;
-  blocks[id] = { group: null, photos: [] };
-
-  const groupCards = GROUPS.map(g =>
-    `<div class="block-group-card" data-group="${g}" onclick="selectGroup(${id},this)">${g}</div>`
-  ).join('');
-
-  const div = document.createElement('div');
-  div.className = 'order-block';
-  div.id = 'block-' + id;
-  div.innerHTML = `
+function addBlock(){
+  const id=++blockCount;
+  blocks[id]={group:null,photos:[]};
+  const groupCards=GROUPS.map(g=>`<div class="block-group-card" data-group="${g}" onclick="selectGroup(${id},this)">${g}</div>`).join('');
+  const div=document.createElement('div');
+  div.className='order-block';
+  div.id='block-'+id;
+  div.innerHTML=`
     <div class="order-block-header">
       <span class="order-block-title">場次 #${id}</span>
       <button class="remove-btn" onclick="removeBlock(${id})">✕ 刪除</button>
@@ -259,13 +238,11 @@ function addBlock() {
       <label class="select-label">選擇應援團體</label>
       <div class="block-group-grid" id="groupGrid-${id}">${groupCards}</div>
       <div class="err-msg" id="errGroup-${id}"></div>
-
       <label class="select-label">演唱會場次</label>
       <select class="session-select" id="session-${id}" onchange="updateSidebar()">
         <option value="">— 請先選擇團體 —</option>
       </select>
       <div class="err-msg" id="errSession-${id}"></div>
-
       <label class="select-label">上傳照片（可一次選多張）</label>
       <div class="upload-hint-banner">
         <strong>📐 請上傳 4:3 橫式照片</strong>
@@ -273,346 +250,266 @@ function addBlock() {
         支援 JPG、PNG、HEIC · 最大單張 10MB · 系統將自動檢查比例
       </div>
       <div class="dropzone" id="dropzone-${id}"
-        ondragover="onDragOver(event,${id})"
-        ondragleave="onDragLeave(event,${id})"
-        ondrop="onDrop(event,${id})">
-        <input type="file" accept="image/jpeg,image/png,image/heic,image/heif,.heic,.heif"
-          multiple onchange="handleFiles(${id},this.files)">
+        ondragover="onDragOver(event,${id})" ondragleave="onDragLeave(event,${id})" ondrop="onDrop(event,${id})">
+        <input type="file" accept="image/jpeg,image/png,image/heic,image/heif,.heic,.heif" multiple onchange="handleFiles(${id},this.files)">
         <span class="dropzone-icon">📷</span>
-        <div class="dropzone-text">
-          <strong>點擊或拖曳照片至此（可多選）</strong>
-          JPG / PNG / HEIC · 4:3 橫式 · 每張最大 10MB
-        </div>
+        <div class="dropzone-text"><strong>點擊或拖曳照片至此（可多選）</strong>JPG / PNG / HEIC · 4:3 橫式 · 每張最大 10MB</div>
       </div>
       <div class="err-msg" id="errPhoto-${id}"></div>
       <div class="photo-grid" id="photoGrid-${id}"></div>
-    </div>
-  `;
+    </div>`;
   document.getElementById('ordersContainer').appendChild(div);
-  document.getElementById('errOrders').textContent = '';
+  document.getElementById('errOrders').textContent='';
   updateSidebar();
 }
 
-function selectGroup(id, el) {
-  document.querySelectorAll(`#groupGrid-${id} .block-group-card`).forEach(c => c.classList.remove('selected'));
+function selectGroup(id,el){
+  document.querySelectorAll(`#groupGrid-${id} .block-group-card`).forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
-  blocks[id].group = el.dataset.group;
-  document.getElementById('errGroup-' + id).textContent = '';
-  const sessions = SESSIONS[el.dataset.group] || [];
-  const sel = document.getElementById('session-' + id);
-  sel.innerHTML = '<option value="">— 請選擇場次 —</option>' +
-    sessions.map(s => `<option value="${s}">${s}</option>`).join('');
+  blocks[id].group=el.dataset.group;
+  document.getElementById('errGroup-'+id).textContent='';
+  const sessions=SESSIONS[el.dataset.group]||[];
+  const sel=document.getElementById('session-'+id);
+  sel.innerHTML='<option value="">— 請選擇場次 —</option>'+sessions.map(s=>`<option value="${s}">${s}</option>`).join('');
   updateSidebar();
 }
 
-function removeBlock(id) {
-  document.getElementById('block-' + id)?.remove();
+function removeBlock(id){
+  document.getElementById('block-'+id)?.remove();
   delete blocks[id];
   updateSidebar();
 }
 
-function onDragOver(e, id) {
-  e.preventDefault();
-  document.getElementById('dropzone-' + id).classList.add('dragover');
-}
-function onDragLeave(e, id) {
-  document.getElementById('dropzone-' + id).classList.remove('dragover');
-}
-function onDrop(e, id) {
-  e.preventDefault();
-  document.getElementById('dropzone-' + id).classList.remove('dragover');
-  handleFiles(id, e.dataTransfer.files);
+function onDragOver(e,id){e.preventDefault();document.getElementById('dropzone-'+id).classList.add('dragover');}
+function onDragLeave(e,id){document.getElementById('dropzone-'+id).classList.remove('dragover');}
+function onDrop(e,id){e.preventDefault();document.getElementById('dropzone-'+id).classList.remove('dragover');handleFiles(id,e.dataTransfer.files);}
+
+function handleFiles(id,fileList){
+  document.getElementById('errPhoto-'+id).textContent='';
+  Array.from(fileList).forEach(f=>processFile(id,f));
 }
 
-function handleFiles(id, fileList) {
-  const errEl = document.getElementById('errPhoto-' + id);
-  errEl.textContent = '';
-  Array.from(fileList).forEach(file => processFile(id, file));
-}
-
-function processFile(id, file) {
-  const pid = ++photoSeq;
-  const errEl = document.getElementById('errPhoto-' + id);
-
-  if (file.size > 10 * 1024 * 1024) {
-    errEl.textContent = `「${file.name}」超過 10MB，已略過`;
-    return;
-  }
-
-  const isHEIC = file.type === 'image/heic' || file.type === 'image/heif' ||
-    file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif');
-
-  if (isHEIC) {
-    addPhotoCard(id, pid, file, null);
-    return;
-  }
-
-  const url = URL.createObjectURL(file);
-  const img = new Image();
-  img.onload = () => {
+function processFile(id,file){
+  const pid=++photoSeq;
+  const errEl=document.getElementById('errPhoto-'+id);
+  if(file.size>10*1024*1024){errEl.textContent=`「${file.name}」超過 10MB，已略過`;return;}
+  const isHEIC=file.type==='image/heic'||file.type==='image/heif'||file.name.toLowerCase().endsWith('.heic')||file.name.toLowerCase().endsWith('.heif');
+  if(isHEIC){addPhotoCard(id,pid,file,null);return;}
+  const url=URL.createObjectURL(file);
+  const img=new Image();
+  img.onload=()=>{
     URL.revokeObjectURL(url);
-    const ratio = img.width / img.height;
-    if (ratio < 1.27 || ratio > 1.40) {
-      errEl.textContent = (errEl.textContent ? errEl.textContent + '　' : '') +
-        `「${file.name}」比例不符（${img.width}×${img.height}），已略過`;
+    const ratio=img.width/img.height;
+    if(ratio<1.27||ratio>1.40){
+      errEl.textContent=(errEl.textContent?errEl.textContent+'　':'')+`「${file.name}」比例不符（${img.width}×${img.height}），已略過`;
       return;
     }
-    const reader = new FileReader();
-    reader.onload = e => addPhotoCard(id, pid, file, e.target.result);
+    const reader=new FileReader();
+    reader.onload=e=>addPhotoCard(id,pid,file,e.target.result);
     reader.readAsDataURL(file);
   };
-  img.src = url;
+  img.src=url;
 }
 
-function addPhotoCard(blockId, pid, file, previewSrc) {
-  blocks[blockId].photos.push({ pid, file, qty: 1 });
-
-  const grid = document.getElementById('photoGrid-' + blockId);
-  const card = document.createElement('div');
-  card.className = 'photo-card';
-  card.id = 'photo-' + pid;
-
-  const imgHtml = previewSrc
-    ? `<img src="${previewSrc}" alt="">`
-    : `<div style="width:100%;height:90px;background:#e8d5b0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#8a6a3a;">HEIC</div>`;
-
-  card.innerHTML = `
-    ${imgHtml}
+function addPhotoCard(blockId,pid,file,previewSrc){
+  blocks[blockId].photos.push({pid,file,qty:1});
+  const grid=document.getElementById('photoGrid-'+blockId);
+  const card=document.createElement('div');
+  card.className='photo-card';
+  card.id='photo-'+pid;
+  const imgHtml=previewSrc
+    ?`<img src="${previewSrc}" alt="">`
+    :`<div style="width:100%;height:90px;background:#e8d5b0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#8a6a3a;">HEIC</div>`;
+  card.innerHTML=`${imgHtml}
     <button class="photo-remove" onclick="removePhoto(${blockId},${pid})">✕</button>
     <div class="photo-card-body">
       <div class="photo-card-name" title="${file.name}">${file.name}</div>
       <div class="photo-qty-row">
         <span class="photo-qty-label">印</span>
-        <input class="photo-qty-input" type="number" min="1" max="99" value="1"
-          oninput="updatePhotoQty(${blockId},${pid},this)">
+        <input class="photo-qty-input" type="number" min="1" max="99" value="1" oninput="updatePhotoQty(${blockId},${pid},this)">
         <span class="photo-qty-label">張</span>
       </div>
-    </div>
-  `;
+    </div>`;
   grid.appendChild(card);
   updateSidebar();
 }
 
-function removePhoto(blockId, pid) {
-  const b = blocks[blockId];
-  if (!b) return;
-  b.photos = b.photos.filter(p => p.pid !== pid);
-  document.getElementById('photo-' + pid)?.remove();
+function removePhoto(blockId,pid){
+  if(!blocks[blockId]) return;
+  blocks[blockId].photos=blocks[blockId].photos.filter(p=>p.pid!==pid);
+  document.getElementById('photo-'+pid)?.remove();
   updateSidebar();
 }
 
-function updatePhotoQty(blockId, pid, input) {
-  input.value = input.value.replace(/[^0-9]/g, '');
-  const b = blocks[blockId];
-  if (!b) return;
-  const photo = b.photos.find(p => p.pid === pid);
-  if (photo) photo.qty = parseInt(input.value) || 1;
+function updatePhotoQty(blockId,pid,input){
+  input.value=input.value.replace(/[^0-9]/g,'');
+  const b=blocks[blockId];
+  if(!b) return;
+  const photo=b.photos.find(p=>p.pid===pid);
+  if(photo) photo.qty=parseInt(input.value)||1;
   updateSidebar();
 }
 
-function getActiveBlockIds() {
-  return Object.keys(blocks).filter(id => document.getElementById('block-' + id));
+function sanitizeBank(){
+  const input=document.getElementById('fieldBankLast5');
+  input.value=input.value.replace(/[^0-9]/g,'').slice(0,5);
+  updateSidebar();
 }
 
-function getTotalQty() {
-  return getActiveBlockIds().reduce((sum, id) => {
-    return sum + (blocks[id].photos || []).reduce((s, p) => s + (parseInt(p.qty) || 1), 0);
-  }, 0);
+function getActiveBlockIds(){
+  return Object.keys(blocks).filter(id=>document.getElementById('block-'+id));
 }
 
-function updateSidebar() {
-  const name = document.getElementById('fieldName').value.trim();
-  const phone = document.getElementById('fieldPhone').value.trim();
-  const addr = document.getElementById('fieldAddress').value.trim();
-  const ids = getActiveBlockIds();
+function getTotalQty(){
+  return getActiveBlockIds().reduce((sum,id)=>{
+    return sum+(blocks[id].photos||[]).reduce((s,p)=>s+(parseInt(p.qty)||1),0);
+  },0);
+}
 
-  if (ids.length === 0) {
-    document.getElementById('sidebarContent').innerHTML = '<div class="empty-notice">新增場次與照片後，<br>訂單明細將顯示於此。</div>';
-    return;
-  }
-
-  const totalQty = getTotalQty();
-  const totalPrice = calcTotal(totalQty);
-  let html = '';
-
-  ids.forEach(id => {
-    const b = blocks[id];
-    const group = b.group || '—';
-    const session = document.getElementById('session-' + id)?.value || '—';
-    const photoCount = b.photos.length;
-    const blockQty = b.photos.reduce((s, p) => s + (parseInt(p.qty) || 1), 0);
-    html += `<div class="summary-block">
+function updateSidebar(){
+  const name=document.getElementById('fieldName').value.trim();
+  const phone=document.getElementById('fieldPhone').value.trim();
+  const addr=document.getElementById('fieldAddress').value.trim();
+  const bank=document.getElementById('fieldBankLast5').value.trim();
+  const ids=getActiveBlockIds();
+  if(ids.length===0){document.getElementById('sidebarContent').innerHTML='<div class="empty-notice">新增場次與照片後，<br>訂單明細將顯示於此。</div>';return;}
+  const totalQty=getTotalQty();
+  const totalPrice=calcTotal(totalQty);
+  let html='';
+  ids.forEach(id=>{
+    const b=blocks[id];
+    const group=b.group||'—';
+    const session=document.getElementById('session-'+id)?.value||'—';
+    const photoCount=b.photos.length;
+    const blockQty=b.photos.reduce((s,p)=>s+(parseInt(p.qty)||1),0);
+    html+=`<div class="summary-block">
       <div class="summary-block-title">場次 #${id} · ${group}</div>
-      ${sr('場次', !session || session.startsWith('—') ? '未選擇' : session)}
-      ${sr('照片', photoCount + ' 張')}
-      ${sr('印製張數', blockQty + ' 張')}
+      ${sr('場次',!session||session.startsWith('—')?'未選擇':session)}
+      ${sr('照片數',photoCount+' 張')}
+      ${sr('印製張數',blockQty+' 張')}
     </div>`;
   });
-
-  html += `<div class="summary-block">
+  html+=`<div class="summary-block">
     <div class="summary-block-title">合計</div>
-    ${sr('總印製張數', totalQty + ' 張')}
-    ${sr('計價方式', '首張 NT$120<br>續張 NT$20/張')}
+    ${sr('總印製張數',totalQty+' 張')}
+    ${sr('計價','首張 NT$120，續張 NT$20')}
   </div>`;
-
-  if (name || phone || addr) {
-    html += `<div class="summary-block">
-      <div class="summary-block-title">收件資訊</div>
-      ${sr('姓名', name || '—')}
-      ${sr('電話', phone || '—')}
-      ${sr('地址', addr || '—')}
+  if(name||phone||addr||bank){
+    html+=`<div class="summary-block">
+      <div class="summary-block-title">收件 ＆ 匯款</div>
+      ${sr('姓名',name||'—')}
+      ${sr('電話',phone||'—')}
+      ${sr('地址',addr||'—')}
+      ${sr('匯款末五碼',bank||'—')}
     </div>`;
   }
-
-  html += `<div class="total-box"><span class="total-lbl">總金額 TOTAL</span><span class="total-amt">NT$ ${totalPrice}</span></div>`;
-
-  // 匯款資訊卡
-  html += `<div class="bank-card">
-    <div class="bank-card-title">🏦 匯款資訊</div>
-    <div class="bank-row"><span class="blbl">銀行</span><span class="bval">華南銀行（008）</span></div>
-    <div class="bank-row"><span class="blbl">戶名</span><span class="bval">十八五一股份有限公司</span></div>
-    <div class="bank-account">112101205853</div>
-    <div class="bank-note">請於 48 小時內完成匯款<br>並填寫帳號末五碼供核對</div>
-  </div>`;
-  document.getElementById('sidebarContent').innerHTML = html;
+  html+=`<div class="total-box"><span class="total-lbl">總金額 TOTAL</span><span class="total-amt">NT$ ${totalPrice}</span></div>`;
+  document.getElementById('sidebarContent').innerHTML=html;
 }
 
-function sr(l, v) {
-  return `<div class="summary-row"><span class="lbl">${l}</span><span class="val">${v}</span></div>`;
-}
+function sr(l,v){return `<div class="summary-row"><span class="lbl">${l}</span><span class="val">${v}</span></div>`;}
 
-function validate() {
-  let ok = true;
-  document.getElementById('errOrders').textContent = '';
-  ['fieldName','fieldPhone','fieldAddress'].forEach(id => document.getElementById(id).classList.remove('error'));
-  ['errName','errPhone','errAddress'].forEach(id => document.getElementById(id).textContent = '');
-
-  const ids = getActiveBlockIds();
-  if (ids.length === 0) { document.getElementById('errOrders').textContent = '請至少新增一個場次！'; ok = false; }
-
-  ids.forEach(id => {
-    const b = blocks[id];
-    if (!b.group) { document.getElementById('errGroup-' + id).textContent = '請選擇應援團體'; ok = false; }
-    const session = document.getElementById('session-' + id)?.value;
-    if (!session || session.startsWith('—')) {
-      document.getElementById('session-' + id).classList.add('error');
-      document.getElementById('errSession-' + id).textContent = '請選擇場次';
-      ok = false;
+function validate(){
+  let ok=true;
+  document.getElementById('errOrders').textContent='';
+  ['fieldName','fieldPhone','fieldAddress','fieldBankLast5'].forEach(id=>document.getElementById(id).classList.remove('error'));
+  ['errName','errPhone','errAddress','errBank'].forEach(id=>document.getElementById(id).textContent='');
+  const ids=getActiveBlockIds();
+  if(ids.length===0){document.getElementById('errOrders').textContent='請至少新增一個場次！';ok=false;}
+  ids.forEach(id=>{
+    const b=blocks[id];
+    if(!b.group){document.getElementById('errGroup-'+id).textContent='請選擇應援團體';ok=false;}
+    const session=document.getElementById('session-'+id)?.value;
+    if(!session||session.startsWith('—')){
+      document.getElementById('session-'+id).classList.add('error');
+      document.getElementById('errSession-'+id).textContent='請選擇場次';ok=false;
     }
-    if (!b.photos || b.photos.length === 0) {
-      document.getElementById('errPhoto-' + id).textContent = '請至少上傳一張照片';
-      ok = false;
-    }
+    if(!b.photos||b.photos.length===0){document.getElementById('errPhoto-'+id).textContent='請至少上傳一張照片';ok=false;}
   });
-
-  const name = document.getElementById('fieldName').value.trim();
-  const phone = document.getElementById('fieldPhone').value.trim();
-  const addr = document.getElementById('fieldAddress').value.trim();
-  if (!name) { document.getElementById('fieldName').classList.add('error'); document.getElementById('errName').textContent = '請填寫收件人姓名'; ok = false; }
-  if (!phone || !/^[0-9\-+\s]+$/.test(phone)) { document.getElementById('fieldPhone').classList.add('error'); document.getElementById('errPhone').textContent = '請輸入有效的電話號碼'; ok = false; }
-  if (!addr) { document.getElementById('fieldAddress').classList.add('error'); document.getElementById('errAddress').textContent = '請填寫收件地址'; ok = false; }
-  const bank = document.getElementById('fieldBankLast5').value.trim();
-  if (!bank || bank.length !== 5) { document.getElementById('fieldBankLast5').classList.add('error'); document.getElementById('errBank').textContent = '請填寫匯款帳號末五碼（5位數字）'; ok = false; }
+  const name=document.getElementById('fieldName').value.trim();
+  const phone=document.getElementById('fieldPhone').value.trim();
+  const addr=document.getElementById('fieldAddress').value.trim();
+  const bank=document.getElementById('fieldBankLast5').value.trim();
+  if(!name){document.getElementById('fieldName').classList.add('error');document.getElementById('errName').textContent='請填寫收件人姓名';ok=false;}
+  if(!phone||!/^[0-9\-+\s]+$/.test(phone)){document.getElementById('fieldPhone').classList.add('error');document.getElementById('errPhone').textContent='請輸入有效的電話號碼';ok=false;}
+  if(!addr){document.getElementById('fieldAddress').classList.add('error');document.getElementById('errAddress').textContent='請填寫收件地址';ok=false;}
+  if(!bank||bank.length!==5){document.getElementById('fieldBankLast5').classList.add('error');document.getElementById('errBank').textContent='請填寫匯款帳號末五碼（5位數字）';ok=false;}
   return ok;
 }
 
-function sanitizeBank() {
-  const input = document.getElementById('fieldBankLast5');
-  input.value = input.value.replace(/[^0-9]/g, '').slice(0, 5);
-  updateSidebar();
-}
+function setProgress(p){document.getElementById('progressBar').style.width=p+'%';}
 
-
-function setProgress(p) { document.getElementById('progressBar').style.width = p + '%'; }
-  return new Promise((res, rej) => {
-    const reader = new FileReader();
-    reader.onload = e => res({ data: e.target.result.split(',')[1], mimeType: file.type || 'image/heic', name: file.name });
-    reader.onerror = rej;
+async function fileToBase64(file){
+  return new Promise((res,rej)=>{
+    const reader=new FileReader();
+    reader.onload=e=>res({data:e.target.result.split(',')[1],mimeType:file.type||'image/heic',name:file.name});
+    reader.onerror=rej;
     reader.readAsDataURL(file);
   });
 }
 
-async function handleSubmit() {
-  if (!validate()) return;
-  const orderNum = 'ORDER #1851-' + String(Math.floor(Math.random() * 9000) + 1000);
-  const timestamp = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
-  const btn = document.getElementById('submitBtn');
-  const bar = document.getElementById('sendingBar');
-  const pw = document.getElementById('progressWrap');
-  btn.disabled = true; bar.style.display = 'block'; pw.style.display = 'block'; setProgress(5);
-
-  const ids = getActiveBlockIds();
-  const sessionItems = [];
-  let totalPhotos = 0;
-  ids.forEach(id => totalPhotos += blocks[id].photos.length);
-
-  let done = 0;
-  for (const id of ids) {
-    const b = blocks[id];
-    const session = document.getElementById('session-' + id).value;
-    const photos = [];
-    for (const p of b.photos) {
-      const photoData = await fileToBase64(p.file);
-      photos.push({ qty: parseInt(p.qty) || 1, photo: photoData });
-      done++;
-      setProgress(5 + (done / totalPhotos) * 65);
+async function handleSubmit(){
+  if(!validate()) return;
+  const orderNum='ORDER #1851-'+String(Math.floor(Math.random()*9000)+1000);
+  const timestamp=new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'});
+  const btn=document.getElementById('submitBtn');
+  const bar=document.getElementById('sendingBar');
+  const pw=document.getElementById('progressWrap');
+  btn.disabled=true;bar.style.display='block';pw.style.display='block';setProgress(5);
+  const ids=getActiveBlockIds();
+  const sessionItems=[];
+  let totalPhotos=0;
+  ids.forEach(id=>totalPhotos+=blocks[id].photos.length);
+  let done=0;
+  for(const id of ids){
+    const b=blocks[id];
+    const session=document.getElementById('session-'+id).value;
+    const photos=[];
+    for(const p of b.photos){
+      const photoData=await fileToBase64(p.file);
+      photos.push({qty:parseInt(p.qty)||1,photo:photoData});
+      done++;setProgress(5+(done/totalPhotos)*65);
     }
-    sessionItems.push({ group: b.group, session, photos });
+    sessionItems.push({group:b.group,session,photos});
   }
-
-  const totalQty = getTotalQty();
-  const totalPrice = calcTotal(totalQty);
-
-  const payload = {
-    orderNum, timestamp,
-    sessions: sessionItems,
-    totalQty, totalPrice,
-    name: document.getElementById('fieldName').value.trim(),
-    phone: document.getElementById('fieldPhone').value.trim(),
-    address: document.getElementById('fieldAddress').value.trim(),
-    bankLast5: document.getElementById('fieldBankLast5').value.trim()
+  const totalQty=getTotalQty();
+  const totalPrice=calcTotal(totalQty);
+  const payload={
+    orderNum,timestamp,sessions:sessionItems,totalQty,totalPrice,
+    name:document.getElementById('fieldName').value.trim(),
+    phone:document.getElementById('fieldPhone').value.trim(),
+    address:document.getElementById('fieldAddress').value.trim(),
+    bankLast5:document.getElementById('fieldBankLast5').value.trim()
   };
-
   setProgress(75);
-  try {
-    await fetch(SHEETS_URL, {
-      method: 'POST', mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
+  try{
+    await fetch(SHEETS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
     setProgress(100);
-    setTimeout(() => showModal(true, orderNum, payload), 300);
-  } catch (e) {
-    showModal(false, null, null);
-  } finally {
-    btn.disabled = false; bar.style.display = 'none'; pw.style.display = 'none'; setProgress(0);
-  }
+    setTimeout(()=>showModal(true,orderNum,payload),300);
+  }catch(e){showModal(false,null,null);}
+  finally{btn.disabled=false;bar.style.display='none';pw.style.display='none';setProgress(0);}
 }
 
-function showModal(ok, orderNum, p) {
-  const icon = document.getElementById('modalIcon');
-  if (ok) {
-    icon.textContent = '✦'; icon.className = 'modal-icon';
-    document.getElementById('modalTitle').textContent = '下單成功！';
-    document.getElementById('modalDesc').textContent = '感謝你的訂購！你的復古報紙相片正在製作中，我們將盡快安排寄送。';
-    const nb = document.getElementById('modalOrderNum'); nb.textContent = orderNum; nb.style.display = 'inline-block';
-    const lines = p.sessions.map(s =>
-      `${s.group} · ${s.session}　${s.photos.length} 張照片`
-    ).join('<br>');
-    document.getElementById('modalSummary').innerHTML =
-      lines + `<br>總印製：${p.totalQty} 張　<strong>NT$ ${p.totalPrice}</strong>`;
-  } else {
-    icon.textContent = '✕'; icon.className = 'modal-icon err';
-    document.getElementById('modalTitle').textContent = '送出失敗';
-    document.getElementById('modalDesc').textContent = '網路連線異常，請稍後再試或聯絡客服。';
-    document.getElementById('modalOrderNum').style.display = 'none';
-    document.getElementById('modalSummary').textContent = '';
+function showModal(ok,orderNum,p){
+  const icon=document.getElementById('modalIcon');
+  if(ok){
+    icon.textContent='✦';icon.className='modal-icon';
+    document.getElementById('modalTitle').textContent='下單成功！';
+    document.getElementById('modalDesc').textContent='感謝你的訂購！我們收到匯款確認後將盡快安排製作與寄送。';
+    const nb=document.getElementById('modalOrderNum');nb.textContent=orderNum;nb.style.display='inline-block';
+    const lines=p.sessions.map(s=>`${s.group} · ${s.session}　${s.photos.length} 張`).join('<br>');
+    document.getElementById('modalSummary').innerHTML=lines+`<br>總印製：${p.totalQty} 張　<strong>NT$ ${p.totalPrice}</strong><br>匯款末五碼：${p.bankLast5}`;
+  }else{
+    icon.textContent='✕';icon.className='modal-icon err';
+    document.getElementById('modalTitle').textContent='送出失敗';
+    document.getElementById('modalDesc').textContent='網路連線異常，請稍後再試或聯絡客服。';
+    document.getElementById('modalOrderNum').style.display='none';
+    document.getElementById('modalSummary').textContent='';
   }
   document.getElementById('modalOverlay').classList.add('open');
 }
 
-function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
-
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
 addBlock();
 </script>
 </body>

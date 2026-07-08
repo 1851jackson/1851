@@ -9,113 +9,119 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --ink:#1a1008;--purple:#9589b1;--green:#2d4a3e;--green-light:#e8f0ec;
-  --kraft:#f5ead6;--kraft-dark:#e8d5b0;--kraft-border:#c8aa78;
+  --kraft:#f0e2c8;--kraft-dark:#e0cba8;--kraft-border:#b89660;
   --border:2px solid #1a1008;--red:#8b2020;
 }
-body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
-.page{max-width:960px;margin:0 auto;padding:0 0 5rem;}
-.masthead{border-bottom:var(--border);border-top:6px solid var(--ink);padding:1.2rem 2rem 1rem;background:var(--kraft);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem;}
+body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");}
+.page{max-width:800px;margin:0 auto;padding:0 0 5rem;}
+
+/* MASTHEAD */
+.masthead{border-bottom:var(--border);border-top:6px solid var(--ink);padding:1.2rem 2rem 1rem;background:var(--kraft);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem;position:relative;}
+.masthead::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(0,0,0,0.03) 28px,rgba(0,0,0,0.03) 29px);pointer-events:none;}
 .masthead-left{font-size:11px;letter-spacing:0.06em;color:#6b4f2a;line-height:1.8;font-style:italic;}
 .masthead-title{text-align:center;}
-.masthead-title h1{font-family:'Noto Serif TC',serif;font-size:2.6rem;font-weight:900;line-height:1.1;letter-spacing:0.1em;}
+.masthead-title h1{font-family:'Noto Serif TC',serif;font-size:2.6rem;font-weight:900;line-height:1.1;letter-spacing:0.1em;text-shadow:1px 1px 0 rgba(0,0,0,0.08);}
 .masthead-right{text-align:right;font-size:11px;color:#6b4f2a;line-height:1.8;font-style:italic;}
 .rule-double{border:none;border-top:4px double var(--ink);}
 .tagline-bar{background:var(--ink);color:var(--kraft);text-align:center;padding:7px 2rem;font-size:11px;letter-spacing:0.2em;font-weight:500;}
-.main{display:grid;grid-template-columns:1fr 300px;border-left:var(--border);border-right:var(--border);border-bottom:var(--border);}
-.form-area{padding:2rem;border-right:var(--border);}
-.sidebar{padding:1.5rem;background:var(--kraft-dark);}
+
+/* LAYOUT */
+.main{border-left:var(--border);border-right:var(--border);border-bottom:var(--border);}
+.form-area{padding:2rem;}
+
+/* SECTION */
 .section{margin-bottom:2.5rem;}
 .section-label{font-family:'Noto Serif TC',serif;font-size:1.15rem;font-weight:700;border-bottom:var(--border);padding-bottom:6px;margin-bottom:1.2rem;display:flex;align-items:center;gap:8px;}
 .section-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:var(--ink);color:var(--kraft);font-size:12px;font-weight:700;flex-shrink:0;}
+
+/* ORDER BLOCKS */
 .orders-container{display:flex;flex-direction:column;gap:1.4rem;}
-.order-block{border:1.5px solid var(--kraft-border);background:#fdf6e9;overflow:hidden;}
+.order-block{border:1.5px solid var(--kraft-border);background:#fdf6e9;overflow:hidden;box-shadow:2px 2px 6px rgba(0,0,0,0.08);}
 .order-block-header{background:var(--ink);color:var(--kraft);padding:8px 14px;display:flex;align-items:center;justify-content:space-between;}
 .order-block-title{font-family:'Noto Serif TC',serif;font-size:13px;font-weight:700;letter-spacing:0.05em;}
 .remove-btn{background:none;border:1px solid rgba(255,255,255,0.4);color:var(--kraft);font-size:11px;padding:2px 8px;cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.15s;}
 .remove-btn:hover{background:var(--red);}
 .order-block-body{padding:1.2rem;}
+
+/* GROUP */
 .select-label{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;color:#6b4f2a;display:block;}
 .block-group-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:1rem;}
-.block-group-card{border:1.5px solid var(--kraft-border);padding:7px 5px;cursor:pointer;transition:all 0.15s;background:var(--kraft);text-align:center;font-weight:700;font-size:11px;font-family:'Noto Serif TC',serif;line-height:1.3;}
+.block-group-card{border:1.5px solid var(--kraft-border);padding:7px 5px;cursor:pointer;transition:all 0.15s;background:rgba(255,255,255,0.5);text-align:center;font-weight:700;font-size:11px;font-family:'Noto Serif TC',serif;line-height:1.3;}
 .block-group-card:hover{border-color:var(--ink);background:#ede0c4;}
 .block-group-card.selected{border:2px solid var(--ink);background:var(--ink);color:var(--kraft);}
-.group-year-label{font-size:10px;font-weight:600;letter-spacing:0.1em;color:#8a6a3a;margin:10px 0 6px;text-transform:uppercase;border-top:1px solid var(--kraft-border);padding-top:8px;}
-.group-year-label:first-child{border-top:none;margin-top:0;}
-.session-select{width:100%;border:1.5px solid var(--kraft-border);padding:9px 12px;font-size:13px;font-family:'Inter',sans-serif;background:var(--kraft);color:var(--ink);outline:none;margin-bottom:1rem;}
+.session-select{width:100%;border:1.5px solid var(--kraft-border);padding:9px 12px;font-size:13px;font-family:'Inter',sans-serif;background:#fff;color:var(--ink);outline:none;margin-bottom:1rem;}
 .session-select:focus{border-color:var(--ink);}
 .session-select.error{border-color:var(--red);}
+
+/* UPLOAD */
 .upload-hint-banner{background:#fffbe6;border:1.5px solid #e6c84a;padding:8px 12px;margin-bottom:10px;font-size:12px;color:#7a5c00;line-height:1.6;}
 .upload-hint-banner strong{display:block;font-size:13px;color:#5a3e00;margin-bottom:2px;}
-.dropzone{border:2px dashed var(--kraft-border);padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.15s;position:relative;background:var(--kraft);margin-bottom:10px;}
+.dropzone{border:2px dashed var(--kraft-border);padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.15s;position:relative;background:rgba(255,255,255,0.4);margin-bottom:10px;}
 .dropzone:hover,.dropzone.dragover{border-color:var(--purple);background:#f0eaf8;}
 .dropzone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
 .dropzone-icon{font-size:2rem;display:block;margin-bottom:6px;}
 .dropzone-text{font-size:13px;color:#8a6a3a;line-height:1.6;}
 .dropzone-text strong{display:block;color:var(--ink);font-size:14px;margin-bottom:3px;}
+
+/* PHOTO CARDS */
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:6px;}
-.photo-card{border:1.5px solid var(--kraft-border);background:var(--kraft);overflow:hidden;position:relative;}
+.photo-card{border:1.5px solid var(--kraft-border);background:#fff;overflow:hidden;position:relative;box-shadow:1px 1px 4px rgba(0,0,0,0.08);}
 .photo-card img{width:100%;height:90px;object-fit:cover;display:block;}
 .photo-card-body{padding:6px 8px;}
 .photo-card-name{font-size:10px;color:#6b4f2a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:5px;}
 .photo-qty-row{display:flex;align-items:center;gap:5px;background:var(--kraft-dark);padding:5px 6px;border-top:1px solid var(--kraft-border);}
 .photo-qty-label{font-size:10px;color:#6b4f2a;white-space:nowrap;font-weight:600;}
-.photo-qty-input{width:44px;border:1.5px solid var(--kraft-border);padding:4px 5px;font-size:13px;font-family:'Inter',sans-serif;background:#fff;text-align:center;outline:none;font-weight:700;}
-.photo-qty-input:focus{border-color:var(--ink);}
+.photo-qty-select{flex:1;border:1.5px solid var(--kraft-border);padding:3px 4px;font-size:12px;font-family:'Inter',sans-serif;background:#fff;outline:none;font-weight:700;color:var(--ink);}
+.photo-qty-select:focus{border-color:var(--ink);}
 .qty-x{font-size:10px;color:#6b4f2a;font-weight:600;}
-.spinner{display:none;width:20px;height:20px;border:2.5px solid rgba(245,234,214,0.3);border-top:2.5px solid var(--kraft);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto;}
-@keyframes spin{to{transform:rotate(360deg);}}
 .photo-remove{position:absolute;top:4px;right:4px;width:20px;height:20px;background:rgba(26,16,8,0.7);color:#fff;border:none;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;}
 .photo-remove:hover{background:var(--red);}
-.preview-newspaper{display:none;margin-top:1rem;text-align:center;position:relative;}
+
+/* PREVIEW */
+.preview-newspaper{display:none;margin-top:1rem;text-align:center;}
 .preview-newspaper.visible{display:block;}
 .preview-wrap{position:relative;display:inline-block;transform:rotate(-2deg);box-shadow:4px 4px 12px rgba(0,0,0,0.25);border:2px solid var(--kraft-border);}
-.preview-wrap img.preview-template{width:100%;max-width:280px;display:block;filter:sepia(15%);}
+.preview-wrap img.preview-template{width:100%;max-width:260px;display:block;filter:sepia(15%);}
 .preview-wrap .preview-photo-overlay{position:absolute;overflow:hidden;left:0.5%;top:15.1%;width:71.5%;height:37.4%;}
 .preview-wrap .preview-photo-overlay img{width:100%;height:100%;object-fit:cover;display:block;}
 .preview-label{font-size:10px;color:#8a6a3a;letter-spacing:0.1em;margin-top:10px;font-style:italic;}
 .preview-watermark-note{font-size:10px;color:#aaa;margin-top:4px;}
+
+/* ADD BTN */
 .add-order-btn{width:100%;border:2px dashed var(--kraft-border);background:transparent;color:#8a6a3a;padding:12px;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.1em;transition:all 0.15s;font-family:'Inter',sans-serif;margin-top:0.5rem;}
 .add-order-btn:hover{border-color:var(--ink);color:var(--ink);background:#ede0c4;}
+
+/* FORM */
 .form-row{margin-bottom:1rem;}
 .form-row label{display:block;font-size:11px;font-weight:600;letter-spacing:0.08em;margin-bottom:5px;text-transform:uppercase;color:#6b4f2a;}
-.form-row input{width:100%;border:1.5px solid var(--kraft-border);padding:10px 12px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.15s;background:var(--kraft);color:var(--ink);}
+.form-row input{width:100%;border:1.5px solid var(--kraft-border);padding:10px 12px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.15s;background:#fff;color:var(--ink);}
 .form-row input:focus{border-color:var(--ink);}
 .form-row input.error{border-color:var(--red);}
-.bank-info-box{border:2px solid var(--ink);background:#fdf6e9;padding:1.2rem;margin-bottom:1rem;}
+
+/* BANK */
+.bank-info-box{border:2px solid var(--ink);background:rgba(255,255,255,0.5);padding:1.2rem;margin-bottom:1rem;}
 .bank-info-title{font-family:'Noto Serif TC',serif;font-size:13px;font-weight:700;border-bottom:1.5px solid var(--kraft-border);padding-bottom:8px;margin-bottom:10px;}
 .bank-info-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid var(--kraft-dark);}
-.bank-info-row:last-of-type{border-bottom:none;}
 .bank-info-row .bl{color:#6b4f2a;}
 .bank-info-row .bv{font-weight:700;}
-.bank-account-num{background:var(--ink);color:var(--kraft);text-align:center;padding:10px;margin:10px 0;font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;letter-spacing:0.15em;}
-.bank-note{font-size:11px;color:#8a6a3a;text-align:center;line-height:1.7;}
+
+/* SUBMIT */
+.err-msg{font-size:11px;color:var(--red);margin-top:4px;}
 .submit-btn{width:100%;background:var(--ink);color:var(--kraft);border:none;padding:15px;font-size:15px;font-weight:700;letter-spacing:0.12em;cursor:pointer;transition:background 0.15s;font-family:'Noto Serif TC',serif;margin-top:1rem;}
 .submit-btn:hover:not(:disabled){background:#3a2a10;}
 .submit-btn:disabled{background:#aaa;cursor:not-allowed;}
 .sending-bar{font-size:12px;color:var(--purple);text-align:center;padding:8px 0;display:none;}
 .progress-bar-wrap{height:3px;background:#ddd;display:none;margin:6px 0;}
 .progress-bar{height:3px;background:var(--purple);width:0%;transition:width 0.3s;}
-.sidebar-title{font-family:'Noto Serif TC',serif;font-size:1rem;font-weight:700;border-bottom:var(--border);padding-bottom:6px;margin-bottom:1.2rem;}
-.summary-block{border:1.5px solid var(--kraft-border);background:var(--kraft);margin-bottom:10px;overflow:hidden;}
-.summary-block-title{background:var(--ink);color:var(--kraft);font-size:11px;font-weight:600;padding:5px 10px;letter-spacing:0.06em;}
-.summary-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 10px;border-bottom:1px solid var(--kraft-dark);}
-.summary-row:last-child{border-bottom:none;}
-.summary-row .lbl{color:#8a6a3a;flex-shrink:0;margin-right:6px;}
-.summary-row .val{font-weight:600;text-align:right;word-break:break-all;}
-.total-box{background:var(--ink);color:var(--kraft);padding:12px;display:flex;justify-content:space-between;align-items:center;margin-top:1rem;}
-.total-lbl{font-size:12px;letter-spacing:0.08em;font-weight:600;}
-.total-amt{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;}
-.sidebar-bank-card{border:2px solid var(--ink);background:var(--kraft);padding:12px;margin-top:1.2rem;}
-.sidebar-bank-title{font-family:'Noto Serif TC',serif;font-size:12px;font-weight:700;border-bottom:1.5px solid var(--kraft-border);padding-bottom:6px;margin-bottom:8px;}
-.sidebar-bank-row{display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid var(--kraft-dark);}
-.sidebar-bank-row:last-of-type{border-bottom:none;}
-.sidebar-bank-row .sbl{color:#8a6a3a;}
-.sidebar-bank-row .sbv{font-weight:700;text-align:right;}
-.sidebar-bank-num{background:var(--ink);color:var(--kraft);text-align:center;padding:7px;margin:8px 0;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;letter-spacing:0.12em;}
-.sidebar-bank-note{font-size:10px;color:#8a6a3a;text-align:center;line-height:1.6;}
-.empty-notice{font-size:12px;color:#8a6a3a;font-style:italic;text-align:center;padding:2rem 0;line-height:1.8;}
+.spinner{display:none;width:20px;height:20px;border:2.5px solid rgba(245,234,214,0.3);border-top:2.5px solid var(--kraft);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.ship-note{text-align:center;font-size:11px;color:#999;margin-top:10px;letter-spacing:0.04em;}
+
+/* FOOTER */
 .deco{text-align:center;padding:10px 0;font-size:18px;letter-spacing:6px;color:var(--kraft-border);border-bottom:var(--border);}
 .footer-bar{background:var(--ink);color:var(--kraft);text-align:center;padding:10px;font-size:11px;letter-spacing:0.15em;}
+
+/* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;align-items:center;justify-content:center;}
 .modal-overlay.open{display:flex;}
 .modal{background:var(--kraft);border:3px solid var(--ink);max-width:440px;width:90%;padding:2.5rem 2rem;text-align:center;}
@@ -126,9 +132,8 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
 .order-num-badge{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;background:var(--ink);color:var(--kraft);display:inline-block;padding:6px 18px;letter-spacing:0.1em;margin-bottom:1.2rem;}
 .modal-close{background:var(--ink);color:var(--kraft);border:none;padding:10px 32px;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.1em;font-family:'Inter',sans-serif;}
 .modal-close:hover{background:#3a2a10;}
+
 @media(max-width:680px){
-  .main{grid-template-columns:1fr;}
-  .sidebar{border-top:var(--border);}
   .masthead{grid-template-columns:1fr;text-align:center;}
   .masthead-left,.masthead-right{display:none;}
   .block-group-grid{grid-template-columns:1fr 1fr;}
@@ -148,7 +153,6 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
   <div class="main">
     <div class="form-area">
 
-      <!-- STEP 1 -->
       <div class="section">
         <div class="section-label"><span class="section-num">1</span> 新增場次與照片</div>
         <div class="orders-container" id="ordersContainer"></div>
@@ -156,15 +160,13 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
         <div class="err-msg" id="errOrders"></div>
       </div>
 
-      <!-- STEP 2 -->
       <div class="section">
         <div class="section-label"><span class="section-num">2</span> 填寫收件資訊</div>
-        <div class="form-row"><label>姓名 Name</label><input type="text" id="fieldName" placeholder="請輸入收件人姓名" oninput="updateSidebar()"><div class="err-msg" id="errName"></div></div>
-        <div class="form-row"><label>電話 Phone</label><input type="tel" id="fieldPhone" placeholder="09XX-XXX-XXX" oninput="updateSidebar()"><div class="err-msg" id="errPhone"></div></div>
-        <div class="form-row"><label>收件地址 Address</label><input type="text" id="fieldAddress" placeholder="縣市 + 街道地址" oninput="updateSidebar()"><div class="err-msg" id="errAddress"></div></div>
+        <div class="form-row"><label>姓名 Name</label><input type="text" id="fieldName" placeholder="請輸入收件人姓名" oninput="updateTotal()"><div class="err-msg" id="errName"></div></div>
+        <div class="form-row"><label>電話 Phone</label><input type="tel" id="fieldPhone" placeholder="09XX-XXX-XXX"><div class="err-msg" id="errPhone"></div></div>
+        <div class="form-row"><label>收件地址 Address</label><input type="text" id="fieldAddress" placeholder="縣市 + 街道地址"><div class="err-msg" id="errAddress"></div></div>
       </div>
 
-      <!-- STEP 3 -->
       <div class="section">
         <div class="section-label"><span class="section-num">3</span> 匯款確認</div>
         <div class="bank-info-box">
@@ -176,32 +178,17 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
             <span style="font-size:12px;letter-spacing:0.08em;font-weight:600;">應匯金額</span>
             <span id="bankTotal" style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;">NT$ 0</span>
           </div>
-          <div class="bank-note">匯款後請填寫帳號末五碼供核對</div>
-        <div style="margin-top:10px;padding:8px 10px;background:var(--ink);color:var(--kraft);font-size:12px;text-align:center;letter-spacing:0.08em;line-height:1.7;">
-          📬 每週一、四掛號寄出
-        </div>
+          <div class="bank-note" style="margin-top:8px;">匯款後請填寫帳號末五碼供核對</div>
         </div>
         <div class="form-row">
           <label>匯款帳號末五碼</label>
-          <input type="text" id="fieldBankLast5" placeholder="例如：05853" maxlength="5" oninput="sanitizeBank()" onchange="updateSidebar()">
+          <input type="text" id="fieldBankLast5" placeholder="例如：05853" maxlength="5" oninput="sanitizeBank()">
           <div class="err-msg" id="errBank"></div>
         </div>
       </div>
 
       <div class="sending-bar" id="sendingBar">上傳中⋯⋯請稍等一下下</div>
       <div class="progress-bar-wrap" id="progressWrap"><div class="progress-bar" id="progressBar"></div></div>
-    </div>
-
-    <div class="sidebar">
-      <div class="sidebar-title">訂單明細 · Order Summary</div>
-      <div id="sidebarContent"><div class="empty-notice">新增場次與照片後，<br>訂單明細將顯示於此。</div></div>
-      <div class="sidebar-bank-card">
-        <div class="sidebar-bank-title">🏦 匯款資訊</div>
-        <div class="sidebar-bank-row"><span class="sbl">銀行</span><span class="sbv">華南銀行（008）</span></div>
-        <div class="sidebar-bank-row"><span class="sbl">戶名</span><span class="sbv">十八五一股份有限公司</span></div>
-        <div class="sidebar-bank-row"><span class="sbl">帳號</span><span class="sbv">112101205853</span></div>
-        <div class="sidebar-bank-note">匯款後請填寫帳號末五碼供核對</div>
-      </div>
     </div>
   </div>
 
@@ -210,6 +197,7 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
       <span id="submitText">✦ 確認下單 PLACE ORDER ✦</span>
       <div class="spinner" id="submitSpinner"></div>
     </button>
+    <div class="ship-note">📬 每週一、四掛號寄出</div>
   </div>
 
   <div class="deco">— ✦ — ✦ — ✦ —</div>
@@ -231,61 +219,24 @@ body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--kraft);}
 const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxR-M4iObY0weWyLkxBChE8I_ZHkA_kUT6qlLeiAQ3AFuodiH3TJKL7ynIbqY2eFWJW/exec';
 const GROUPS = ['j-hope','BABYMONSTER','G-DRAGON','LE SSERAFIM','BLACKPINK','TWICE','NCT WISH','i-dle','鄧紫棋','SEVENTEEN CXS','EXO','孫燕姿','&TEAM','頑童 MJ116','五月天'];
 const SESSIONS = {
-  'j-hope':[
-    '2025.05.24 Sat','2025.05.25 Sun'
-  ],
-  'BABYMONSTER':[
-    '2025.06.28 Sat','2025.06.29 Sun'
-  ],
-  'G-DRAGON':[
-    '2025.07.11 Fri','2025.07.12 Sat','2025.07.13 Sun'
-  ],
-  'LE SSERAFIM':[
-    '2025.07.19 Sat','2025.07.20 Sun'
-  ],
-  'BLACKPINK':[
-    '2025.10.18 Sat','2025.10.19 Sun'
-  ],
-  'TWICE':[
-    '2025.11.22 Sat','2025.11.23 Sun',
-    '2026.03.20 Fri','2026.03.21 Sat','2026.03.22 Sun'
-  ],
-  'NCT WISH':[
-    '2026.02.28 Sat'
-  ],
-  'i-dle':[
-    '2026.03.07 Sat'
-  ],
-  '鄧紫棋':[
-    '2026.04.09 Thu','2026.04.10 Fri','2026.04.11 Sat','2026.04.12 Sun'
-  ],
-  'SEVENTEEN CXS':[
-    '2026.04.24 Fri','2026.04.25 Sat','2026.04.26 Sun'
-  ],
-  'EXO':[
-    '2026.05.09 Sat','2026.05.10 Sun'
-  ],
-  '孫燕姿':[
-    '2026.05.15 Fri','2026.05.17 Sun'
-  ],
-  '&TEAM':[
-    '2026.06.21 Sun'
-  ],
-  '頑童 MJ116':[
-    '2026.06.06 Sat','2026.06.07 Sun',
-    '2026.06.12 Fri','2026.06.13 Sat','2026.06.14 Sun'
-  ],
-  '五月天':[
-    '2026.07.03 Fri','2026.07.04 Sat','2026.07.05 Sun',
-    '2026.07.08 Wed',
-    '2026.07.10 Fri','2026.07.11 Sat','2026.07.12 Sun'
-  ]
+  'j-hope':['2025.05.24 Sat','2025.05.25 Sun'],
+  'BABYMONSTER':['2025.06.28 Sat','2025.06.29 Sun'],
+  'G-DRAGON':['2025.07.11 Fri','2025.07.12 Sat','2025.07.13 Sun'],
+  'LE SSERAFIM':['2025.07.19 Sat','2025.07.20 Sun'],
+  'BLACKPINK':['2025.10.18 Sat','2025.10.19 Sun'],
+  'TWICE':['2025.11.22 Sat','2025.11.23 Sun','2026.03.20 Fri','2026.03.21 Sat','2026.03.22 Sun'],
+  'NCT WISH':['2026.02.28 Sat'],
+  'i-dle':['2026.03.07 Sat'],
+  '鄧紫棋':['2026.04.09 Thu','2026.04.10 Fri','2026.04.11 Sat','2026.04.12 Sun'],
+  'SEVENTEEN CXS':['2026.04.24 Fri','2026.04.25 Sat','2026.04.26 Sun'],
+  'EXO':['2026.05.09 Sat','2026.05.10 Sun'],
+  '孫燕姿':['2026.05.15 Fri','2026.05.17 Sun'],
+  '&TEAM':['2026.06.21 Sun'],
+  '頑童 MJ116':['2026.06.06 Sat','2026.06.07 Sun','2026.06.12 Fri','2026.06.13 Sat','2026.06.14 Sun'],
+  '五月天':['2026.07.03 Fri','2026.07.04 Sat','2026.07.05 Sun','2026.07.08 Wed','2026.07.10 Fri','2026.07.11 Sat','2026.07.12 Sun']
 };
 
-function calcTotal(qty){
-  if(qty<=0) return 0;
-  return 120 + Math.max(0,qty-1)*20;
-}
+function calcTotal(qty){ return qty<=0?0:120+Math.max(0,qty-1)*20; }
 
 let blockCount=0, photoSeq=0;
 let blocks={};
@@ -307,7 +258,7 @@ function addBlock(){
       <div class="block-group-grid" id="groupGrid-${id}">${groupCards}</div>
       <div class="err-msg" id="errGroup-${id}"></div>
       <label class="select-label">演唱會場次</label>
-      <select class="session-select" id="session-${id}" onchange="updateSidebar();showPreview(${id})">
+      <select class="session-select" id="session-${id}" onchange="updateTotal();showPreview(${id})">
         <option value="">— 請先選擇團體 —</option>
       </select>
       <div class="err-msg" id="errSession-${id}"></div>
@@ -321,7 +272,7 @@ function addBlock(){
         <div class="preview-label">✦ 報紙模板預覽 · 僅供參考 ✦</div>
         <div class="preview-watermark-note">實際成品以印刷為準</div>
       </div>
-      <label class="select-label">上傳照片（可一次選多張）</label>
+      <label class="select-label" style="margin-top:1rem;">上傳照片（可一次選多張）</label>
       <div class="upload-hint-banner">
         <strong>照片規格限 4:3 橫式，請先自行裁切想要的範圍。</strong>
         使用直式會超出畫面印刷不完全，要注意。
@@ -337,7 +288,7 @@ function addBlock(){
     </div>`;
   document.getElementById('ordersContainer').appendChild(div);
   document.getElementById('errOrders').textContent='';
-  updateSidebar();
+  updateTotal();
 }
 
 function selectGroup(id,el){
@@ -348,13 +299,13 @@ function selectGroup(id,el){
   const sessions=SESSIONS[el.dataset.group]||[];
   const sel=document.getElementById('session-'+id);
   sel.innerHTML='<option value="">— 請選擇場次 —</option>'+sessions.map(s=>`<option value="${s}">${s}</option>`).join('');
-  updateSidebar();
+  updateTotal();
 }
 
 function removeBlock(id){
   document.getElementById('block-'+id)?.remove();
   delete blocks[id];
-  updateSidebar();
+  updateTotal();
 }
 
 function onDragOver(e,id){e.preventDefault();document.getElementById('dropzone-'+id).classList.add('dragover');}
@@ -390,13 +341,9 @@ function processFile(id,file){
 
 function addPhotoCard(blockId,pid,file,previewSrc){
   blocks[blockId].photos.push({pid,file,qty:1});
-  // 第一張照片用於預覽疊加
-  if (blocks[blockId].photos.length === 1 && previewSrc) {
-    const photoOverlayImg = document.getElementById('preview-photo-img-' + blockId);
-    if (photoOverlayImg) {
-      photoOverlayImg.src = previewSrc;
-      photoOverlayImg.style.display = 'block';
-    }
+  if(blocks[blockId].photos.length===1&&previewSrc){
+    const photoOverlayImg=document.getElementById('preview-photo-img-'+blockId);
+    if(photoOverlayImg){photoOverlayImg.src=previewSrc;photoOverlayImg.style.display='block';}
   }
   const grid=document.getElementById('photoGrid-'+blockId);
   const card=document.createElement('div');
@@ -405,66 +352,39 @@ function addPhotoCard(blockId,pid,file,previewSrc){
   const imgHtml=previewSrc
     ?`<img src="${previewSrc}" alt="">`
     :`<div style="width:100%;height:90px;background:#e8d5b0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#8a6a3a;">HEIC</div>`;
+  const opts=Array.from({length:30},(_,i)=>`<option value="${i+1}" ${i===0?'selected':''}>${i+1}</option>`).join('');
   card.innerHTML=`${imgHtml}
     <button class="photo-remove" onclick="removePhoto(${blockId},${pid})">✕</button>
     <div class="photo-card-body">
       <div class="photo-card-name" title="${file.name}">${file.name}</div>
       <div class="photo-qty-row">
         <span class="photo-qty-label">印製數量</span>
-        <input class="photo-qty-input" type="number" min="1" max="99" value="1" oninput="updatePhotoQty(${blockId},${pid},this)">
+        <select class="photo-qty-select" onchange="updatePhotoQty(${blockId},${pid},this)">${opts}</select>
         <span class="qty-x">張</span>
       </div>
     </div>`;
   grid.appendChild(card);
-  updateSidebar();
+  updateTotal();
 }
 
 function removePhoto(blockId,pid){
   if(!blocks[blockId]) return;
   blocks[blockId].photos=blocks[blockId].photos.filter(p=>p.pid!==pid);
   document.getElementById('photo-'+pid)?.remove();
-  updateSidebar();
+  updateTotal();
 }
 
-function updatePhotoQty(blockId,pid,input){
-  input.value=input.value.replace(/[^0-9]/g,'');
+function updatePhotoQty(blockId,pid,sel){
   const b=blocks[blockId];
   if(!b) return;
   const photo=b.photos.find(p=>p.pid===pid);
-  if(photo) photo.qty=parseInt(input.value)||1;
-  updateSidebar();
-}
-
-function showPreview(id) {
-  const session = document.getElementById('session-' + id)?.value;
-  const previewBox = document.getElementById('preview-newspaper-' + id);
-  if (!session || session.startsWith('—') || !previewBox) {
-    if (previewBox) previewBox.classList.remove('visible');
-    return;
-  }
-  try {
-    const parts = session.split('.');
-    const yy = parts[0].slice(2);
-    const mm = parts[1].padStart(2,'0');
-    const dd = parts[2].split(' ')[0].padStart(2,'0');
-    const code = yy + mm + dd;
-    const templateImg = document.getElementById('preview-template-img-' + id);
-    templateImg.src = `https://1851jackson.github.io/1851/${code}.png`;
-    templateImg.onload = () => previewBox.classList.add('visible');
-    templateImg.onerror = () => previewBox.classList.remove('visible');
-  } catch(e) {
-    previewBox.classList.remove('visible');
-  }
+  if(photo) photo.qty=parseInt(sel.value)||1;
+  updateTotal();
 }
 
 function sanitizeBank(){
   const input=document.getElementById('fieldBankLast5');
   input.value=input.value.replace(/[^0-9]/g,'').slice(0,5);
-  updateSidebar();
-}
-
-function getActiveBlockIds(){
-  return Object.keys(blocks).filter(id=>document.getElementById('block-'+id));
 }
 
 function getTotalQty(){
@@ -473,50 +393,33 @@ function getTotalQty(){
   },0);
 }
 
-function updateSidebar(){
-  const name=document.getElementById('fieldName').value.trim();
-  const phone=document.getElementById('fieldPhone').value.trim();
-  const addr=document.getElementById('fieldAddress').value.trim();
-  const bank=document.getElementById('fieldBankLast5').value.trim();
-  const ids=getActiveBlockIds();
-  if(ids.length===0){document.getElementById('sidebarContent').innerHTML='<div class="empty-notice">新增場次與照片後，<br>訂單明細將顯示於此。</div>';return;}
+function updateTotal(){
   const totalQty=getTotalQty();
   const totalPrice=calcTotal(totalQty);
-  let html='';
-  ids.forEach(id=>{
-    const b=blocks[id];
-    const group=b.group||'—';
-    const session=document.getElementById('session-'+id)?.value||'—';
-    const photoCount=b.photos.length;
-    const blockQty=b.photos.reduce((s,p)=>s+(parseInt(p.qty)||1),0);
-    html+=`<div class="summary-block">
-      <div class="summary-block-title">場次 #${id} · ${group}</div>
-      ${sr('場次',!session||session.startsWith('—')?'未選擇':session)}
-      ${sr('照片數',photoCount+' 張')}
-      ${sr('印製張數',blockQty+' 張')}
-    </div>`;
-  });
-  html+=`<div class="summary-block">
-    <div class="summary-block-title">合計</div>
-    ${sr('總印製張數',totalQty+' 張')}
-    ${sr('計價','首張 NT$120，續張 NT$20')}
-  </div>`;
-  if(name||phone||addr||bank){
-    html+=`<div class="summary-block">
-      <div class="summary-block-title">收件 ＆ 匯款</div>
-      ${sr('姓名',name||'—')}
-      ${sr('電話',phone||'—')}
-      ${sr('地址',addr||'—')}
-      ${sr('匯款末五碼',bank||'—')}
-    </div>`;
-  }
-  html+=`<div class="total-box"><span class="total-lbl">總金額 TOTAL</span><span class="total-amt">NT$ ${totalPrice}</span></div>`;
-  document.getElementById('sidebarContent').innerHTML=html;
   const bt=document.getElementById('bankTotal');
   if(bt) bt.textContent='NT$ '+totalPrice;
 }
 
-function sr(l,v){return `<div class="summary-row"><span class="lbl">${l}</span><span class="val">${v}</span></div>`;}
+function getActiveBlockIds(){
+  return Object.keys(blocks).filter(id=>document.getElementById('block-'+id));
+}
+
+function showPreview(id){
+  const session=document.getElementById('session-'+id)?.value;
+  const previewBox=document.getElementById('preview-newspaper-'+id);
+  if(!session||session.startsWith('—')||!previewBox){if(previewBox)previewBox.classList.remove('visible');return;}
+  try{
+    const parts=session.split('.');
+    const yy=parts[0].slice(2);
+    const mm=parts[1].padStart(2,'0');
+    const dd=parts[2].split(' ')[0].padStart(2,'0');
+    const code=yy+mm+dd;
+    const templateImg=document.getElementById('preview-template-img-'+id);
+    templateImg.src=`https://1851jackson.github.io/1851/${code}.png`;
+    templateImg.onload=()=>previewBox.classList.add('visible');
+    templateImg.onerror=()=>previewBox.classList.remove('visible');
+  }catch(e){previewBox.classList.remove('visible');}
+}
 
 function validate(){
   let ok=true;
@@ -529,10 +432,7 @@ function validate(){
     const b=blocks[id];
     if(!b.group){document.getElementById('errGroup-'+id).textContent='請選擇應援團體';ok=false;}
     const session=document.getElementById('session-'+id)?.value;
-    if(!session||session.startsWith('—')){
-      document.getElementById('session-'+id).classList.add('error');
-      document.getElementById('errSession-'+id).textContent='請選擇場次';ok=false;
-    }
+    if(!session||session.startsWith('—')){document.getElementById('session-'+id).classList.add('error');document.getElementById('errSession-'+id).textContent='請選擇場次';ok=false;}
     if(!b.photos||b.photos.length===0){document.getElementById('errPhoto-'+id).textContent='請至少上傳一張照片';ok=false;}
   });
   const name=document.getElementById('fieldName').value.trim();

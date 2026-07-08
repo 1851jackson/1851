@@ -315,9 +315,8 @@ function addBlock(){
       </div>
       <label class="select-label">上傳照片（可一次選多張）</label>
       <div class="upload-hint-banner">
-        <strong>📐 照片規格：4:3 橫式（重要）</strong>
-        請使用橫式拍攝的照片。<br>
-        ⚠️ 若上傳直式或非 4:3 比例的照片，印刷時超出範圍的部分將<strong>自動裁切</strong>，建議先確認比例再上傳。
+        <strong>照片規格限 4:3 橫式，請先自行裁切想要的範圍。</strong>
+        使用直式會超出畫面印刷不完全，要注意。
       </div>
       <div class="dropzone" id="dropzone-${id}"
         ondragover="onDragOver(event,${id})" ondragleave="onDragLeave(event,${id})" ondrop="onDrop(event,${id})">

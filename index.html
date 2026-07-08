@@ -309,7 +309,7 @@ function addBlock(){
       </select>
       <div class="err-msg" id="errSession-${id}"></div>
       <div class="preview-newspaper" id="preview-newspaper-${id}">
-        <img id="preview-newspaper-img-${id}" src="" alt="報紙預覽">
+        <canvas id="preview-canvas-${id}" width="400" style="max-width:100%;transform:rotate(-2deg);box-shadow:4px 4px 12px rgba(0,0,0,0.25);border:2px solid var(--kraft-border);"></canvas>
         <div class="preview-label">✦ 報紙模板預覽 · 僅供參考 ✦</div>
         <div class="preview-watermark-note">實際成品以印刷為準</div>
       </div>
@@ -383,6 +383,15 @@ function processFile(id,file){
 
 function addPhotoCard(blockId,pid,file,previewSrc){
   blocks[blockId].photos.push({pid,file,qty:1});
+  // 第一張照片用於 canvas 預覽
+  if (blocks[blockId].photos.length === 1 && previewSrc) {
+    const photoImg = new Image();
+    photoImg.onload = () => {
+      blocks[blockId]._photoPreview = photoImg;
+      drawPreviewCanvas(blockId);
+    };
+    photoImg.src = previewSrc;
+  }
   const grid=document.getElementById('photoGrid-'+blockId);
   const card=document.createElement('div');
   card.className='photo-card';
@@ -423,8 +432,7 @@ function updatePhotoQty(blockId,pid,input){
 function showPreview(id) {
   const session = document.getElementById('session-' + id)?.value;
   const previewBox = document.getElementById('preview-newspaper-' + id);
-  const previewImg = document.getElementById('preview-newspaper-img-' + id);
-  if (!session || session.startsWith('—') || !previewBox || !previewImg) {
+  if (!session || session.startsWith('—') || !previewBox) {
     if (previewBox) previewBox.classList.remove('visible');
     return;
   }
@@ -434,12 +442,63 @@ function showPreview(id) {
     const mm = parts[1].padStart(2,'0');
     const dd = parts[2].split(' ')[0].padStart(2,'0');
     const code = yy + mm + dd;
-    const url = `https://1851jackson.github.io/1851/${code}.png`;
-    previewImg.src = url;
-    previewImg.onerror = () => { previewBox.classList.remove('visible'); };
-    previewImg.onload = () => { previewBox.classList.add('visible'); };
+    const templateUrl = `https://1851jackson.github.io/1851/${code}.png`;
+    const templateImg = new window._Image ? new window._Image() : new Image();
+    templateImg.crossOrigin = 'anonymous';
+    templateImg.onload = () => {
+      blocks[id]._templateImg = templateImg;
+      drawPreviewCanvas(id);
+      previewBox.classList.add('visible');
+    };
+    templateImg.onerror = () => { previewBox.classList.remove('visible'); };
+    templateImg.src = templateUrl;
   } catch(e) {
     previewBox.classList.remove('visible');
+  }
+}
+
+function drawPreviewCanvas(id) {
+  const canvas = document.getElementById('preview-canvas-' + id);
+  if (!canvas) return;
+  const b = blocks[id];
+  if (!b || !b._templateImg) return;
+
+  const SCALE = 400 / 2382;
+  const canvasH = Math.round(3369 * SCALE);
+  canvas.width = 400;
+  canvas.height = canvasH;
+
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(b._templateImg, 0, 0, 400, canvasH);
+
+  // 照片位置（等比縮放）
+  const px = Math.round(30 * SCALE);
+  const py = Math.round(508 * SCALE);
+  const pw = Math.round(1704 * SCALE);
+  const ph = Math.round(1260 * SCALE);
+
+  if (b._photoPreview) {
+    // 裁切成 4:3 再貼上
+    const photoImg = b._photoPreview;
+    const srcRatio = photoImg.width / photoImg.height;
+    const tgtRatio = pw / ph;
+    let sx=0, sy=0, sw=photoImg.width, sh=photoImg.height;
+    if (srcRatio > tgtRatio) {
+      sw = Math.round(photoImg.height * tgtRatio);
+      sx = Math.round((photoImg.width - sw) / 2);
+    } else {
+      sh = Math.round(photoImg.width / tgtRatio);
+      sy = Math.round((photoImg.height - sh) / 2);
+    }
+    ctx.drawImage(photoImg, sx, sy, sw, sh, px, py, pw, ph);
+  } else {
+    // 灰色佔位框
+    ctx.fillStyle = 'rgba(180,160,130,0.3)';
+    ctx.fillRect(px, py, pw, ph);
+    ctx.fillStyle = 'rgba(100,70,40,0.4)';
+    ctx.font = `${Math.round(ph*0.12)}px serif`;
+    ctx.textAlign = 'center';
+    ctx.fillText('你的照片將出現在這裡', px + pw/2, py + ph/2);
   }
 }
 
